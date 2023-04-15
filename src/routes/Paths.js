@@ -2,32 +2,32 @@ import { Routes, Route } from "react-router-dom";
 import App from "../App";
 
 //pages
-import Cart from "../pages/cart/Cart";
-import Checkout from "../pages/checkout/Checkout";
-import Dashboard from "../pages/user-dashboard/Dashboard";
-import History from "../pages/user-history/History";
-import Login from "../pages/login/Login";
-import ProductDetails from "../pages/product-details/ProductDetails";
-import Products from "../pages/products/Products";
-import Profile from "../pages/user-profile/Profile";
-import Registration from "../pages/registration/Registration";
-import WishList from "../pages/user-wish-list/WishList";
+import CartPage from "../pages/cart/CartPage";
+import CheckoutPage from "../pages/checkout/CheckoutPage";
+import DashboardPage from "../pages/user-dashboard/DashboardPage";
+import HistoryPage from "../pages/user-history/HistoryPage";
+import LoginPage from "../pages/login/LoginPage";
+import ProductDetailsPage from "../pages/product-details/ProductDetailsPage";
+import ProductsPage from "../pages/products/ProductsPage";
+import ProfilePage from "../pages/user-profile/ProfilePage";
+import RegistrationPage from "../pages/registration/RegistrationPage";
+import WishListPage from "../pages/user-wish-list/WishListPage";
 
 const Paths = () => {
   return (
     <Routes>
       <Route element={<App />} path="/">
-        <Route index element={<Products />} />
-        <Route element={<ProductDetails />} path=":id" />
-        <Route element={<Cart />} path="cart" />
-        <Route element={<Checkout />} path="checkout" />
-        <Route element={<Login />} path="login" />
-        <Route element={<Registration />} path="registration" />
+        <Route index element={<ProductsPage />} />
+        <Route element={<ProductDetailsPage />} path=":id" />
+        <Route element={<CartPage />} path="cart" />
+        <Route element={<CheckoutPage />} path="checkout" />
+        <Route element={<LoginPage />} path="login" />
+        <Route element={<RegistrationPage />} path="registration" />
 
-        <Route element={<Profile />} path="profile">
-          <Route index element={<Dashboard />} />
-          <Route element={<History />} path="history" />
-          <Route element={<WishList />} path="wish-list" />
+        <Route element={<ProfilePage />} path="profile">
+          <Route index element={<DashboardPage />} />
+          <Route element={<HistoryPage />} path="history" />
+          <Route element={<WishListPage />} path="wish-list" />
         </Route>
       </Route>
     </Routes>
