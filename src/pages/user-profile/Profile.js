@@ -2,14 +2,14 @@
 import { Outlet } from "react-router-dom";
 
 //styles
-import styles from "./App.module.scss";
+import styles from "./Profile.module.scss";
 
-function App() {
+const Profile = () => {
   return (
     <div>
       <Outlet />
     </div>
   );
-}
+};
 
-export default App;
+export default Profile;
