@@ -2,6 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 
+//redux
+import { Provider } from "react-redux";
+import reduxStore from "./redux/ReduxStore";
+
 //routes
 import { BrowserRouter as Router } from "react-router-dom";
 import Paths from "./routes/Paths";
@@ -11,9 +15,11 @@ import "./index.module.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Router>
-    <Paths />
-  </Router>
+  <Provider store={reduxStore}>
+    <Router>
+      <Paths />
+    </Router>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
