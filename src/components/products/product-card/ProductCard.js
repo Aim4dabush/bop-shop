@@ -1,5 +1,5 @@
 //components
-import Link from "../../shared/link/Link";
+import ButtonLink from "../../shared/button-link/ButtonLink";
 
 //styles
 import styles from "./ProductCard.module.scss";
@@ -22,9 +22,7 @@ const ProductCard = ({ brand, category, id, image, price, stock, title }) => {
           </div>
         </div>
       </div>
-      <Link path={`/${id}`} classStyle={"button"}>
-        View Details
-      </Link>
+      <ButtonLink path={`/${id}`}>View Details</ButtonLink>
     </div>
   );
 };
