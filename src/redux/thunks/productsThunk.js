@@ -14,6 +14,13 @@ export const getProducts = () => {
       const products = data.products;
       const arr = [];
       products.forEach((product) => {
+        let transformTitle = product.title.toLowerCase();
+
+        if (transformTitle.charAt(0) === "-") {
+          const newText = transformTitle.replace("-", " ").trimStart();
+          transformTitle = newText;
+        }
+
         arr.push({
           brand: product.brand,
           category: product.category,
@@ -23,7 +30,7 @@ export const getProducts = () => {
           price: product.price,
           rating: product.rating,
           stock: product.stock,
-          title: product.title,
+          title: transformTitle,
         });
       });
 
