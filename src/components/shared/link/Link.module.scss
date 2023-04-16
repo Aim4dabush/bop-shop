@@ -1,0 +1,13 @@
+@import "../../../SassVariables.scss";
+
+.btn {
+  background-color: $primary;
+  border-radius: 5px;
+  color: $secondary;
+  padding: 0.25rem;
+  text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
