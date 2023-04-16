@@ -1,8 +1,15 @@
+//components
+import Products from "../../components/products/Products";
+
 //styles
 import styles from "./ProductsPage.module.scss";
 
 const ProductsPage = () => {
-  return <div>ProductsPage</div>;
+  return (
+    <section>
+      <Products />
+    </section>
+  );
 };
 
 export default ProductsPage;
