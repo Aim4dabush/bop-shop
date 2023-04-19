@@ -2,7 +2,13 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 //react icons
-import { FaBars, FaTimes } from "react-icons/fa";
+import {
+  FaBars,
+  FaShoppingCart,
+  FaShoppingBag,
+  FaTimes,
+  FaUserCircle,
+} from "react-icons/fa";
 
 //components
 import Button from "../shared/button/Button";
@@ -64,17 +70,22 @@ const NavBar = () => {
         }`}
       >
         <li className={styles.navLink}>
-          <Link path={"/cart"}>Cart</Link>
+          <Link path={"/cart"}>
+            <FaShoppingCart /> Cart
+          </Link>
         </li>
         <li className={styles.navLink}>
-          <Link path={"/checkout"}>Checkout</Link>
+          <Link path={"/checkout"}>
+            <FaShoppingBag />
+            Checkout
+          </Link>
         </li>
         <li
           className={styles.profile}
           style={{ overflow: showProfileOptions ? "visible" : "hidden" }}
         >
           <p onClick={showProfileOptionsHandler} onMouseEnter={mouseEnter}>
-            User
+            <FaUserCircle /> Profile
           </p>
           <ul
             className={`${styles.profileLinks} ${
