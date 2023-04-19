@@ -3,10 +3,11 @@
 .primary {
   background-color: $secondary;
   border: none;
+  border-radius: 5px;
   color: $primary;
   font-family: $oswald;
   font-size: 16px;
-  padding: 0;
+  padding: 0.5rem 1rem;
 
   &:hover {
     color: $modal;
@@ -17,9 +18,11 @@
 .secondary {
   background-color: $primary;
   border: none;
+  border-radius: 5px;
   color: $secondary;
   font-family: $oswald;
   font-size: 16px;
+  padding: 0.5rem 1rem;
 
   &:hover {
     color: $modal;
