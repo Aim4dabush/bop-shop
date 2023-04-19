@@ -70,12 +70,12 @@ const NavBar = () => {
         }`}
       >
         <li className={styles.navLink}>
-          <Link path={"/cart"}>
+          <Link colorPrimary={true} path={"/cart"}>
             <FaShoppingCart /> Cart
           </Link>
         </li>
         <li className={styles.navLink}>
-          <Link path={"/checkout"}>
+          <Link colorPrimary={true} path={"/checkout"}>
             <FaShoppingBag />
             Checkout
           </Link>
@@ -94,18 +94,26 @@ const NavBar = () => {
             onMouseLeave={mouseLeave}
           >
             <li className={styles.profileLink}>
-              <Link path={"/profile"}>Dashboard</Link>
+              <Link colorPrimary={true} path={"/profile"}>
+                Dashboard
+              </Link>
             </li>
             <li className={styles.profileLink}>
-              <Link path={"/profile/history"}>Order History</Link>
+              <Link colorPrimary={true} path={"/profile/history"}>
+                Order History
+              </Link>
             </li>
             <li className={styles.profileLink}>
-              <Link path={"/profile/wish-list"}>Wish List</Link>
+              <Link colorPrimary={true} path={"/profile/wish-list"}>
+                Wish List
+              </Link>
             </li>
           </ul>
         </li>
         <li className={styles.navLink}>
-          <Link path={"/login"}>Login</Link>
+          <Link colorPrimary={true} path={"/login"}>
+            Login
+          </Link>
         </li>
         <li className={styles.navLink}>
           <Button colorPrimary={true} buttonHandler={signOutHandler}>
