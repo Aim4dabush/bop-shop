@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 
 //components
+import NavBar from "./components/nav-bar/NavBar";
 import { Outlet } from "react-router-dom";
 
 //redux
@@ -22,9 +23,14 @@ function App() {
     }
   }, [dispatch, products]);
   return (
-    <main>
-      <Outlet />
-    </main>
+    <Fragment>
+      <header>
+        <NavBar />
+      </header>
+      <main>
+        <Outlet />
+      </main>
+    </Fragment>
   );
 }
 
