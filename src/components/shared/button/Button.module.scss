@@ -1,0 +1,28 @@
+@import "../../../SassVariables.scss";
+
+.primary {
+  background-color: $secondary;
+  border: none;
+  color: $primary;
+  font-family: $oswald;
+  font-size: 16px;
+  padding: 0;
+
+  &:hover {
+    color: $modal;
+    cursor: pointer;
+  }
+}
+
+.secondary {
+  background-color: $primary;
+  border: none;
+  color: $secondary;
+  font-family: $oswald;
+  font-size: 16px;
+
+  &:hover {
+    color: $modal;
+    cursor: pointer;
+  }
+}
