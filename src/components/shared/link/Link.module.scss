@@ -1,9 +1,21 @@
 @import "../../../SassVariables.scss";
 
-.link {
+.linkPrimary {
   align-items: center;
   background-color: $secondary;
   color: $primary;
+  display: flex;
+  flex-grow: 1;
+
+  &:hover {
+    color: $modal;
+    cursor: pointer;
+  }
+}
+
+.linkSecondary {
+  align-items: center;
+  color: $secondary;
   display: flex;
   flex-grow: 1;
 

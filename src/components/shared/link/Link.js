@@ -3,9 +3,12 @@ import { NavLink } from "react-router-dom";
 //styles
 import styles from "./Link.module.scss";
 
-const Link = ({ path, children }) => {
+const Link = ({ children, colorPrimary, path }) => {
   return (
-    <NavLink className={styles.link} to={path}>
+    <NavLink
+      className={`${colorPrimary ? styles.linkPrimary : styles.linkSecondary}`}
+      to={path}
+    >
       {children}
     </NavLink>
   );
