@@ -1,13 +1,13 @@
 @import "../../../SassVariables.scss";
 
-.btn {
-  background-color: $primary;
-  border-radius: 5px;
-  color: $secondary;
-  padding: 0.25rem;
-  text-decoration: none;
+.link {
+  background-color: $secondary;
+  color: $primary;
+  flex-grow: 1;
+  text-align: center;
 
   &:hover {
+    color: $modal;
     cursor: pointer;
   }
 }
