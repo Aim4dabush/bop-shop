@@ -1,0 +1,22 @@
+@import "../../../SassVariables.scss";
+
+.inputControl {
+  display: flex;
+  flex-direction: column;
+
+  .error {
+    background-color: $error;
+    border-color: $error;
+  }
+
+  .errorMessage {
+    color: $error;
+    font-size: 14px;
+  }
+
+  .input {
+    border: 1px solid black;
+    border-radius: 3px;
+    font-size: 20px;
+  }
+}
