@@ -1,8 +1,15 @@
+//components
+import Login from "../../components/login/Login";
+
 //styles
 import styles from "./LoginPage.module.scss";
 
 const LoginPage = () => {
-  return <div>LoginPage</div>;
+  return (
+    <section>
+      <Login />
+    </section>
+  );
 };
 
 export default LoginPage;
