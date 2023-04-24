@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Navigate, Routes, Route } from "react-router-dom";
 import App from "../App";
 
 //pages
@@ -13,22 +13,31 @@ import ProfilePage from "../pages/user-profile/ProfilePage";
 import RegistrationPage from "../pages/registration/RegistrationPage";
 import WishListPage from "../pages/user-wish-list/WishListPage";
 
+//redux
+import { useSelector } from "react-redux";
+
 const Paths = () => {
+  const token = useSelector((state) => state.auth.user.token);
+
   return (
     <Routes>
       <Route element={<App />} path="/">
         <Route index element={<ProductsPage />} />
-        <Route element={<ProductDetailsPage />} path=":id" />
-        <Route element={<CartPage />} path="cart" />
-        <Route element={<CheckoutPage />} path="checkout" />
+        <Route element={<ProductDetailsPage />} path="product/:id" />
+        {token && <Route element={<CartPage />} path="cart" />}
+        {token && <Route element={<CheckoutPage />} path="checkout" />}
         <Route element={<LoginPage />} path="login" />
         <Route element={<RegistrationPage />} path="registration" />
 
-        <Route element={<ProfilePage />} path="profile">
-          <Route index element={<DashboardPage />} />
-          <Route element={<HistoryPage />} path="history" />
-          <Route element={<WishListPage />} path="wish-list" />
-        </Route>
+        {token && (
+          <Route element={<ProfilePage />} path="profile">
+            <Route index element={<DashboardPage />} />
+            <Route element={<HistoryPage />} path="history" />
+            <Route element={<WishListPage />} path="wish-list" />
+          </Route>
+        )}
+
+        <Route element={<Navigate to="/login" replace={true} />} path="*" />
       </Route>
     </Routes>
   );
