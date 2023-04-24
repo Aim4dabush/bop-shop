@@ -92,13 +92,13 @@
 @media (max-width: 540px) {
   .container {
     .close {
-      transform: translateX(100px);
+      transform: translateX(100%);
       transform-origin: right;
       transition: transform 500ms ease-out;
     }
 
     .open {
-      transform: translateX();
+      transform: translateX(0);
       transform-origin: left;
       transition: transform 500ms ease-in;
     }
