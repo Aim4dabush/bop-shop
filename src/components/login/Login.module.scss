@@ -43,3 +43,19 @@
     margin-top: 1rem;
   }
 }
+
+@media (max-width: 912px) {
+  .container {
+    .form {
+      width: 75%;
+    }
+  }
+}
+
+@media (max-width: 280px) {
+  .container {
+    .form {
+      width: 95%;
+    }
+  }
+}

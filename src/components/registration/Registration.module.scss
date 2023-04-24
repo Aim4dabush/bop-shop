@@ -49,3 +49,22 @@
     margin-top: 1rem;
   }
 }
+
+@media (max-width: 912px) {
+  .container {
+    .form {
+      width: 75%;
+    }
+  }
+}
+
+@media (max-width: 540px) {
+  .container {
+    .form {
+      width: 95%;
+      .userWrapper {
+        flex-direction: column;
+      }
+    }
+  }
+}
