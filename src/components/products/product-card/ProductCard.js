@@ -22,7 +22,7 @@ const ProductCard = ({ brand, category, id, image, price, stock, title }) => {
           </div>
         </div>
       </div>
-      <LinkButton path={`/${id}`}>View Details</LinkButton>
+      <LinkButton path={`/product/${id}`}>View Details</LinkButton>
     </div>
   );
 };
