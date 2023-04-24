@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
+//components
+import Button from "../shared/button/Button";
+import Link from "../shared/link/Link";
+
 //react icons
 import {
   FaBars,
@@ -10,14 +14,15 @@ import {
   FaUserCircle,
 } from "react-icons/fa";
 
-//components
-import Button from "../shared/button/Button";
-import Link from "../shared/link/Link";
+//redux
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/thunks/authThunk";
 
 //styles
 import styles from "./NavBar.module.scss";
 
 const NavBar = () => {
+  const dispatch = useDispatch();
   const [showProfileOptions, setShowProfileOptions] = useState(false);
   const [showLinks, setShowLinks] = useState(false);
   const [windowSize, setWindowSize] = useState(0);
@@ -35,7 +40,7 @@ const NavBar = () => {
     setShowProfileOptions((prev) => (prev = !prev));
   };
   const signOutHandler = () => {
-    console.log("Sign out successful!");
+    dispatch(logout());
   };
 
   useEffect(() => {
@@ -67,7 +72,7 @@ const NavBar = () => {
       <ul
         className={`${
           windowSize > 540 ? styles.desktopView : styles.mobileView
-        }`}
+        } ${showLinks ? styles.open : styles.close}`}
       >
         <li className={styles.navLink}>
           <Link colorPrimary={true} path={"/cart"}>

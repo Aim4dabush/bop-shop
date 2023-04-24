@@ -8,6 +8,9 @@ import useValidation from "../../hooks/useValidation";
 //styles
 import styles from "./Registration.module.scss";
 
+//thunks
+import { registerUser } from "../../redux/thunks/authThunk";
+
 const Registration = () => {
   const {
     error: emailError,
@@ -53,6 +56,8 @@ const Registration = () => {
     if (!formIsValid && password === confirm) {
       return;
     }
+
+    registerUser(email, name, password);
 
     confirmReset();
     emailReset();

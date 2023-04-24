@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 //components
 import Button from "../shared/button/Button";
 import Input from "../shared/input/Input";
@@ -6,10 +9,19 @@ import Link from "../shared/link/Link";
 //hook
 import useValidation from "../../hooks/useValidation";
 
+//redux
+import { useDispatch, useSelector } from "react-redux";
+
 //styles
 import styles from "./Login.module.scss";
 
+//thunk
+import { login } from "../../redux/thunks/authThunk";
+
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.auth.user);
   const {
     error: emailError,
     isValid: emailValid,
@@ -38,13 +50,21 @@ const Login = () => {
     if (!formIsValid) {
       return;
     }
-    console.log(email, password);
+
+    dispatch(login(email, password));
+
     emailReset();
     passwordReset();
   };
 
   const emailClassName = emailError ? styles.error : null;
   const passwordClassName = passwordError ? styles.error : null;
+
+  useEffect(() => {
+    if (user.token) {
+      navigate("/", { replace: true });
+    }
+  }, [navigate, user]);
 
   return (
     <div className={styles.container}>
