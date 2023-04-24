@@ -12,10 +12,6 @@
     flex-grow: 1;
     justify-content: space-evenly;
 
-    .close {
-      display: none;
-    }
-
     .navLink {
       align-items: center;
       display: flex;
@@ -40,10 +36,6 @@
           align-items: center;
           display: flex;
         }
-      }
-
-      .show {
-        display: initial;
       }
     }
   }
@@ -92,6 +84,22 @@
 
     &:hover {
       color: $modal;
+    }
+  }
+}
+
+@media (max-width: 540px) {
+  .container {
+    .close {
+      transform: translateX(100px);
+      transform-origin: right;
+      transition: transform 500ms ease-out;
+    }
+
+    .open {
+      transform: translateX();
+      transform-origin: left;
+      transition: transform 500ms ease-in;
     }
   }
 }
