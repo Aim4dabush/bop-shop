@@ -20,7 +20,7 @@ const ProductDetailsPage = () => {
       const product = products.find((item) => {
         return item.id === parseInt(id);
       });
-      console.log(product);
+
       dispatch(productsActions.setProduct(product));
     }
   }, [dispatch, id, products]);
