@@ -3,10 +3,12 @@ import { combineReducers } from "@reduxjs/toolkit";
 
 //reducers
 import authReducer from "./slices/authSlice";
+import notificationReducer from "./slices/notificationSlice";
 import productsReducer from "./slices/productsSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  notification: notificationReducer,
   products: productsReducer,
 });
 
