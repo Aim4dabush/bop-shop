@@ -3,11 +3,13 @@ import { combineReducers } from "@reduxjs/toolkit";
 
 //reducers
 import authReducer from "./slices/authSlice";
+import cartReducer from "./slices/cartSlice";
 import notificationReducer from "./slices/notificationSlice";
 import productsReducer from "./slices/productsSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  cart: cartReducer,
   notification: notificationReducer,
   products: productsReducer,
 });
