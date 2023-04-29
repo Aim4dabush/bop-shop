@@ -1,0 +1,65 @@
+@import "../../../SassVariables.scss";
+
+.card {
+  border: 1px solid $secondary;
+  border-radius: 10px;
+  box-shadow: 6px 6px 10px black;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+
+  .contentWrapper {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1rem;
+    width: 100%;
+
+    .infoWrapper {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      height: 100%;
+      justify-content: space-between;
+
+      .actions {
+        gap: 1rem;
+        justify-content: flex-end;
+      }
+
+      .generalInfo {
+        justify-content: space-evenly;
+      }
+
+      p {
+        text-transform: capitalize;
+      }
+
+      .otherInfo {
+        justify-content: space-between;
+      }
+
+      .row {
+        display: flex;
+        width: 100%;
+      }
+    }
+  }
+
+  .titleWrapper {
+    align-items: center;
+    background-color: $secondary;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: $primary;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    text-align: center;
+
+    h1,
+    h5 {
+      text-transform: capitalize;
+    }
+  }
+}
