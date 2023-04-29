@@ -127,7 +127,7 @@ const NavBar = () => {
         )}
         {user.token && (
           <li className={styles.navLink}>
-            <Button colorPrimary={true} buttonHandler={signOutHandler}>
+            <Button background={"secondary"} buttonHandler={signOutHandler}>
               Sign-out
             </Button>
           </li>
