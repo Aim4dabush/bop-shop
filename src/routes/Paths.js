@@ -4,14 +4,14 @@ import App from "../App";
 //pages
 import CartPage from "../pages/cart/CartPage";
 import CheckoutPage from "../pages/checkout/CheckoutPage";
-import DashboardPage from "../pages/user-dashboard/DashboardPage";
-import HistoryPage from "../pages/user-history/HistoryPage";
+import Dashboard from "../components/profile/dashboard/Dashboard";
+import History from "../components/profile/history/History";
 import LoginPage from "../pages/login/LoginPage";
 import ProductDetailsPage from "../pages/product-details/ProductDetailsPage";
 import ProductsPage from "../pages/products/ProductsPage";
-import ProfilePage from "../pages/user-profile/ProfilePage";
+import ProfilePage from "../pages/profile/ProfilePage";
 import RegistrationPage from "../pages/registration/RegistrationPage";
-import WishListPage from "../pages/user-wish-list/WishListPage";
+import WishList from "../components/profile/wish-list/WishList";
 
 //redux
 import { useSelector } from "react-redux";
@@ -31,9 +31,9 @@ const Paths = () => {
 
         {token && (
           <Route element={<ProfilePage />} path="profile">
-            <Route index element={<DashboardPage />} />
-            <Route element={<HistoryPage />} path="history" />
-            <Route element={<WishListPage />} path="wish-list" />
+            <Route index element={<Dashboard />} />
+            <Route element={<History />} path="history" />
+            <Route element={<WishList />} path="wish-list" />
           </Route>
         )}
 
