@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getDatabase } from "firebase/database";
+import { getDatabase, ref } from "firebase/database";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -13,12 +13,16 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const user = JSON.parse(localStorage.getItem("user"));
+const id = user.id;
 
 //Authentication
 export const auth = getAuth(app);
 
 //Realtime Database
 const realtimeDB = getDatabase(app);
+export const shopRef = ref(realtimeDB, `user/${id}/shop`);
+export const wishRef = ref(realtimeDB, `user/${id}/wish`);
 
 //Firestore Database
 const firestoreDB = getFirestore(app);
