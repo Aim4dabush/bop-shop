@@ -1,6 +1,7 @@
 import { Fragment, useEffect } from "react";
 
 //components
+import Modal from "./modal/Modal";
 import NavBar from "./components/nav-bar/NavBar";
 import { Outlet } from "react-router-dom";
 
@@ -24,6 +25,7 @@ function App() {
   }, [dispatch, products]);
   return (
     <Fragment>
+      <Modal />
       <header>
         <NavBar />
       </header>

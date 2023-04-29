@@ -1,0 +1,49 @@
+@import "../../SassVariables.scss";
+
+.card {
+  border: 1px solid $secondary;
+  border-radius: 10px;
+  color: $secondary;
+  position: absolute;
+  right: 0;
+  transform-origin: left;
+  width: fit-content;
+  z-index: 1;
+
+  .contentWrapper {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+
+  .titleWrapper {
+    border-bottom: 1px solid $secondary;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: $secondary;
+    text-align: center;
+  }
+}
+
+.display {
+  transform: translateX(0) translateY(60%);
+  transition: transform 500ms ease-in;
+}
+
+.error {
+  background-color: $error;
+}
+
+.hide {
+  transform: translateX(-100%) translateY(60%);
+  transition: transform 500ms ease-out;
+}
+
+.logout {
+  background-color: $modal;
+}
+
+.success {
+  background-color: $success;
+}

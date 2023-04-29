@@ -1,16 +1,22 @@
 //Actions
+import { notificationActions } from "../slices/notificationSlice";
 import { productsActions } from "../slices/productsSlice";
 
 export const getProducts = () => {
   return async (dispatch) => {
     try {
-      const res = await fetch("https://dummyjson.com/products?limit=100");
+      const results = await fetch("https://dummyjson.com/products?limit=100");
 
-      if (!res.ok) {
-        throw new Error("Could not get products");
+      if (!results.ok) {
+        throw new Error("Unable to get results");
       }
 
-      const data = await res.json();
+      const data = await results.json();
+
+      if (!data) {
+        throw new Error("Unable to get data");
+      }
+
       const products = data.products;
       const arr = [];
       products.forEach((product) => {
@@ -36,7 +42,13 @@ export const getProducts = () => {
 
       dispatch(productsActions.setProducts(arr));
     } catch (err) {
-      console.log(`An error occurred: ${err} `);
+      dispatch(
+        notificationActions.setInfo({
+          show: true,
+          status: "Error",
+          message: err.message,
+        })
+      );
     }
   };
 };

@@ -19,6 +19,13 @@ const notificationSlice = createSlice({
 
       state.info = action.payload;
     },
+    setInfoReset(state) {
+      state.info = {
+        show: false,
+        status: "",
+        message: "",
+      };
+    },
   },
 });
 
