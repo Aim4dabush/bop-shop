@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import styles from "./DetailsCard.module.scss";
 
 const DetailsCard = () => {
-  const { brand, category, description, images, price, rating, stock, title } =
+  const { brand, category, description, mainPic, price, rating, stock, title } =
     useSelector((state) => state.products.product);
 
   return (
@@ -24,7 +24,7 @@ const DetailsCard = () => {
       </div>
       <div className={styles.contentWrapper}>
         <div className={styles.imgWrapper}>
-          <img src={images[0]} alt={title} />
+          <img src={mainPic} alt={title} />
         </div>
         <div className={styles.infoWrapper}>
           <div className={styles.row}>

@@ -18,7 +18,7 @@ const Products = () => {
               brand={product.brand}
               category={product.category}
               id={product.id}
-              image={product.images[0]}
+              image={product.mainPic}
               key={product.id}
               price={product.price}
               stock={product.stock}

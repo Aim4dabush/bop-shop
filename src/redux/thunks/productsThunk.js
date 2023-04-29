@@ -32,6 +32,7 @@ export const getProducts = () => {
           category: product.category,
           description: product.description,
           id: product.id,
+          mainPic: product.images[0],
           images: product.images,
           price: product.price,
           rating: product.rating,
