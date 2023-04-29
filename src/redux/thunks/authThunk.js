@@ -24,12 +24,7 @@ export const registerUser = (email, name, password) => {
       }
 
       const user = results.user;
-      const profile = await updateProfile(user, { displayName: name });
-
-      if (!profile) {
-        throw new Error("Unable to get profile");
-      }
-
+      updateProfile(user, { displayName: name });
       dispatch(
         notificationActions.setInfo({
           show: true,
@@ -93,31 +88,16 @@ export const login = (email, password) => {
 };
 
 export const logout = () => {
-  return async (dispatch) => {
-    try {
-      const results = await signOut(auth);
-
-      if (!results) {
-        throw new Error("Unable to get results");
-      }
-
-      dispatch(authActions.setUserReset());
-      localStorage.clear();
-      dispatch(
-        notificationActions.setInfo({
-          show: true,
-          status: "Logout",
-          message: "Logout successful!",
-        })
-      );
-    } catch (err) {
-      dispatch(
-        notificationActions.setInfo({
-          show: true,
-          status: "Error",
-          message: err.message,
-        })
-      );
-    }
+  return (dispatch) => {
+    signOut(auth);
+    dispatch(authActions.setUserReset());
+    localStorage.clear();
+    dispatch(
+      notificationActions.setInfo({
+        show: true,
+        status: "Logout",
+        message: "Logout successful!",
+      })
+    );
   };
 };
