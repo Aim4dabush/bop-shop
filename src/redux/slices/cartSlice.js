@@ -3,26 +3,49 @@ import { createSlice } from "@reduxjs/toolkit";
 export const cartSlice = createSlice({
   name: "cart",
   initialState: {
-    data: {},
-    shopCart: [],
-    wishCart: [],
+    loadData: false,
+    getShopCart: [],
+    getWishCart: [],
+    postShopCart: [],
+    postWishCart: [],
   },
   reducers: {
-    setData(state, action) {
-      state.data = {};
-      state.data = action.payload;
+    setGetShopCart(state, action) {
+      state.getShopCart = [];
+      state.getShopCart = action.payload;
     },
-    setShopCart(state, action) {
-      state.shopCart = action.payload;
+    setGetWishCart(state, action) {
+      state.getWishCart = [];
+      state.getWishCart = action.payload;
     },
-    setShopCartReset(state) {
-      state.shopCart = [];
+    setLoadData(state, action) {
+      state.loadData = action.payload;
     },
-    setWishCart(state, action) {
-      state.wishCart = action.payload;
+    setPostShopCart(state, action) {
+      state.postShopCart.push(action.payload);
     },
-    setWishCartReset(state) {
-      state.wishCart = [];
+    setPostShopCartReset(state) {
+      state.postShopCart = [];
+    },
+    setPostWishCart(state, action) {
+      state.postWishCart.push(action.payload);
+    },
+    setPostWishCartReset(state) {
+      state.postWishCart = [];
+    },
+    setReplaceDuplicateShopItem(state, action) {
+      state.postShopCart.splice(
+        action.payload.index,
+        1,
+        action.payload.duplicate
+      );
+    },
+    setReplaceDuplicateWishItem(state, action) {
+      state.postWishCart.splice(
+        action.payload.index,
+        1,
+        action.payload.duplicate
+      );
     },
   },
 });

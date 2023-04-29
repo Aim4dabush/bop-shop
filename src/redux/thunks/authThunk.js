@@ -8,6 +8,7 @@ import { auth } from "../../firebase/firebaseConfig";
 
 //actions
 import { authActions } from "../slices/authSlice";
+import { cartActions } from "../slices/cartSlice";
 import { notificationActions } from "../slices/notificationSlice";
 
 export const registerUser = (email, name, password) => {
@@ -91,6 +92,8 @@ export const logout = () => {
   return (dispatch) => {
     signOut(auth);
     dispatch(authActions.setUserReset());
+    dispatch(cartActions.setPostShopCartReset());
+    dispatch(cartActions.setPostWishCartReset());
     localStorage.clear();
     dispatch(
       notificationActions.setInfo({
