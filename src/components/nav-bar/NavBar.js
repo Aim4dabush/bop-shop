@@ -68,7 +68,7 @@ const NavBar = () => {
         Bop Shop
       </NavLink>
       {windowSize <= 540 && (
-        <Button buttonHandler={showLinkHandler} colorPrimary={true}>
+        <Button buttonHandler={showLinkHandler} background={"secondary"}>
           {showLinks ? <FaTimes /> : <FaBars />}
         </Button>
       )}

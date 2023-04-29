@@ -1,10 +1,8 @@
 @import "../../../SassVariables.scss";
 
-.primary {
-  background-color: $secondary;
+.btn {
   border: none;
   border-radius: 5px;
-  color: $primary;
   font-family: $oswald;
   font-size: 16px;
   padding: 0.5rem 1rem;
@@ -15,17 +13,27 @@
   }
 }
 
-.secondary {
-  background-color: $primary;
-  border: none;
-  border-radius: 5px;
+.danger {
+  background-color: $error;
   color: $secondary;
-  font-family: $oswald;
-  font-size: 16px;
-  padding: 0.5rem 1rem;
+}
 
-  &:hover {
-    color: $modal;
-    cursor: pointer;
-  }
+.primary {
+  background-color: $primary;
+  color: $secondary;
+}
+
+.secondary {
+  background-color: $secondary;
+  color: $primary;
+}
+
+.success {
+  background-color: $success;
+  color: $secondary;
+}
+
+.warning {
+  background-color: $warning;
+  color: $secondary;
 }

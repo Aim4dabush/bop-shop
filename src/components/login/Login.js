@@ -83,7 +83,7 @@ const Login = () => {
         >
           Password
         </Input>
-        <Button colorPrimary={true}>Login</Button>
+        <Button background={"secondary"}>Login</Button>
       </form>
       <p className={styles.registrationLink}>
         Don't have an account?{" "}

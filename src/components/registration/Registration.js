@@ -130,7 +130,7 @@ const Registration = () => {
             )}
           </div>
         </div>
-        <Button colorPrimary={true}>Submit</Button>
+        <Button background={"success"}>Submit</Button>
       </form>
     </div>
   );
