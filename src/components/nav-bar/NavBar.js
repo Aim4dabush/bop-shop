@@ -82,7 +82,7 @@ const NavBar = () => {
         <li className={styles.navLink}>
           <Link colorPrimary={true} path={"/cart"}>
             <FaShoppingCart /> Cart{" "}
-            {shop.length > 0 && (
+            {shop?.length > 0 && (
               <span className={styles.badge}>{shop.length}</span>
             )}
           </Link>
@@ -118,7 +118,10 @@ const NavBar = () => {
             </li>
             <li className={styles.profileLink}>
               <Link colorPrimary={true} path={"/profile/wish-list"}>
-                Wish List <span className={styles.badge}>{wish.length}</span>
+                Wish List{" "}
+                {wish?.length > 0 && (
+                  <span className={styles.badge}>{wish.length}</span>
+                )}
               </Link>
             </li>
           </ul>
