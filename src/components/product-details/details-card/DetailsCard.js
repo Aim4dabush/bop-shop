@@ -37,9 +37,11 @@ const DetailsCard = () => {
     title,
   } = useSelector((state) => state.products.product);
   const loadData = useSelector((state) => state.cart.loadData);
-  const shop = useSelector((state) => state.cart.postShopCart);
-  const wish = useSelector((state) => state.cart.postWishCart);
+  const shopData = useSelector((state) => state.cart.postShopCart);
+  const { windowSize } = useSelector((state) => state.window);
+  const wishData = useSelector((state) => state.cart.postWishCart);
   const [quantity, setQuantity] = useState(1);
+  console.log(windowSize);
 
   const shopHandler = () => {
     const post = {
@@ -57,7 +59,7 @@ const DetailsCard = () => {
       title,
     };
 
-    const index = shop.findIndex((item) => {
+    const index = shopData.findIndex((item) => {
       return item.id === post.id;
     });
 
@@ -88,7 +90,7 @@ const DetailsCard = () => {
       title,
     };
 
-    const index = wish.findIndex((item) => {
+    const index = wishData.findIndex((item) => {
       return item.id === post.id;
     });
 
@@ -107,19 +109,19 @@ const DetailsCard = () => {
 
   useEffect(() => {
     if (loadData) {
-      dispatch(postShopData(shop));
-      dispatch(postWishData(wish));
+      dispatch(postShopData(shopData));
+      dispatch(postWishData(wishData));
       dispatch(cartActions.setLoadData(false));
     }
-  }, [dispatch, loadData, shop, wish]);
+  }, [dispatch, loadData, shopData, wishData]);
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${windowSize <= 1280 && styles.nest}`}>
       <div className={styles.titleWrapper}>
         <h5>{brand}</h5>
         <h1>{title}</h1>
         <h5>{category}</h5>
       </div>
-      <div className={styles.contentWrapper}>
+      <div className={`${styles.contentWrapper} ${styles.air}`}>
         <div className={styles.imgWrapper}>
           <img src={mainPic} alt={title} />
         </div>
@@ -127,11 +129,19 @@ const DetailsCard = () => {
           <div className={styles.row}>
             <p>{description}</p>
           </div>
-          <div className={`${styles.row} ${styles.otherInfo}`}>
-            <p>Rating: {rating}</p>
-            <p>Stock: {stock}</p>
-            <p>Price: ${price}</p>
-            <ButtonInputGroup setValue={setQuantity} />
+          <div
+            className={`${styles.row} ${styles.otherInfo} ${
+              windowSize <= 280 && styles.fold
+            }`}
+          >
+            <div className={styles.rowTwo}>
+              <p>Rating: {rating}</p>
+              <p>Stock: {stock}</p>
+            </div>
+            <div className={styles.rowTwo}>
+              <p>Price: ${price}</p>
+              <ButtonInputGroup setValue={setQuantity} />
+            </div>
           </div>
           <div className={`${styles.row} ${styles.actions}`}>
             <Button
