@@ -1,7 +1,7 @@
 //styles
 import styles from "./Button.module.scss";
 
-const Button = ({ buttonHandler, children, background }) => {
+const Button = ({ background, buttonHandler, children, tip }) => {
   return (
     <button
       className={`${styles.btn} ${
@@ -13,6 +13,7 @@ const Button = ({ buttonHandler, children, background }) => {
       }`}
       onClick={buttonHandler}
     >
+      <span className={styles.toolTip}>{tip}</span>
       {children}
     </button>
   );

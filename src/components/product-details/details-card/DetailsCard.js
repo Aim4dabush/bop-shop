@@ -134,13 +134,19 @@ const DetailsCard = () => {
             <ButtonInputGroup setValue={setQuantity} />
           </div>
           <div className={`${styles.row} ${styles.actions}`}>
-            <Button background={"success"} buttonHandler={shopHandler}>
+            <Button
+              background={"success"}
+              buttonHandler={shopHandler}
+              tip={"Add Cart"}
+            >
               <FaCartPlus />
-              Cart
             </Button>
-            <Button background={"warning"} buttonHandler={wishHandler}>
+            <Button
+              background={"warning"}
+              buttonHandler={wishHandler}
+              tip={"Add Wish"}
+            >
               <FaHeart />
-              Wish List
             </Button>
           </div>
         </div>

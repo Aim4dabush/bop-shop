@@ -23,12 +23,8 @@
       justify-content: space-between;
 
       .actions {
-        gap: 1rem;
+        gap: 0.2rem;
         justify-content: flex-end;
-      }
-
-      .generalInfo {
-        justify-content: space-evenly;
       }
 
       p {
@@ -41,7 +37,6 @@
 
       .row {
         display: flex;
-        width: 100%;
       }
     }
   }

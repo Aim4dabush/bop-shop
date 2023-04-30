@@ -8,11 +8,23 @@
   font-family: $oswald;
   font-size: 16px;
   gap: 0.2rem;
+  overflow: hidden;
   padding: 0.5rem 1rem;
+  position: relative;
 
   &:hover {
     color: $modal;
     cursor: pointer;
+    overflow: visible;
+  }
+
+  .toolTip {
+    color: $secondary;
+    left: 0;
+    position: absolute;
+    overflow: hidden;
+    top: -100%;
+    width: 113%;
   }
 }
 
