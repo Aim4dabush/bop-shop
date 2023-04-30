@@ -1,8 +1,5 @@
 import { Fragment, useEffect } from "react";
 
-//actions
-import { windowActions } from "./redux/slices/windowSlice";
-
 //components
 import Modal from "./modal/Modal";
 import NavBar from "./components/nav-bar/NavBar";
@@ -25,17 +22,6 @@ function App() {
     dispatch(getWishData());
   }, [dispatch]);
 
-  useEffect(() => {
-    const resizeHandler = () => {
-      dispatch(windowActions.setWindowSize(window.innerWidth));
-    };
-
-    window.addEventListener("resize", resizeHandler);
-
-    resizeHandler();
-
-    return window.removeEventListener("resize", resizeHandler);
-  }, [dispatch]);
   return (
     <Fragment>
       <Modal />

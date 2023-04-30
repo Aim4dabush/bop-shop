@@ -34,7 +34,7 @@
       align-items: center;
       display: flex;
       position: relative;
-      width: 20%;
+      width: fit-content;
 
       .hide {
         display: none;
@@ -48,6 +48,7 @@
         .profileLink {
           align-items: center;
           display: flex;
+          width: 110%;
 
           .badge {
             align-items: center;

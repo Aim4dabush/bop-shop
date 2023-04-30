@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
+//actions
+import { windowActions } from "../../redux/slices/windowSlice";
+
 //components
 import Button from "../shared/button/Button";
 import Link from "../shared/link/Link";
@@ -49,10 +52,20 @@ const NavBar = () => {
   };
 
   useEffect(() => {
+    const resizeHandler = () => {
+      dispatch(windowActions.setWindowSize(window.innerWidth));
+    };
+
+    window.addEventListener("resize", resizeHandler);
+
+    resizeHandler();
+
     if (windowSize > 540) {
       setShowLinks(false);
     }
-  }, [windowSize]);
+
+    return window.removeEventListener("resize", resizeHandler);
+  }, [dispatch, windowSize]);
 
   return (
     <nav className={styles.container}>
