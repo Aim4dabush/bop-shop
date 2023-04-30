@@ -26,11 +26,11 @@ import { logout } from "../../redux/thunks/authThunk";
 const NavBar = () => {
   const dispatch = useDispatch();
   const shop = useSelector((state) => state.cart.getShopCart);
-  const user = useSelector((state) => state.auth.user);
+  const { user } = useSelector((state) => state.auth);
+  const { windowSize } = useSelector((state) => state.window);
   const wish = useSelector((state) => state.cart.getWishCart);
   const [showProfileOptions, setShowProfileOptions] = useState(false);
   const [showLinks, setShowLinks] = useState(false);
-  const [windowSize, setWindowSize] = useState(0);
 
   const mouseEnter = () => {
     setShowProfileOptions(true);
@@ -49,19 +49,9 @@ const NavBar = () => {
   };
 
   useEffect(() => {
-    const resizeHandler = () => {
-      setWindowSize(window.innerWidth);
-    };
-
-    window.addEventListener("resize", resizeHandler);
-
-    resizeHandler();
-
     if (windowSize > 540) {
       setShowLinks(false);
     }
-
-    return () => window.removeEventListener("resize", resizeHandler);
   }, [windowSize]);
 
   return (
