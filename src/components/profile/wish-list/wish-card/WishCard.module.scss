@@ -1,0 +1,64 @@
+@import "../../../../SassVariables.scss";
+
+.card {
+  border-radius: 10px;
+  box-shadow: 6px 6px 10px black;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  width: 50%;
+
+  .contentWrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1rem;
+
+    .infoWrapper {
+      justify-content: space-between;
+      display: flex;
+      flex-direction: column;
+      padding: 0 1rem;
+
+      .actions {
+        justify-content: end;
+        gap: 0.1rem;
+      }
+
+      .otherInfo {
+        justify-content: space-between;
+      }
+
+      .row {
+        display: flex;
+      }
+    }
+  }
+
+  .titleWrapper {
+    align-items: center;
+    background-color: $secondary;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: $primary;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+
+    .titleInfo {
+      align-items: center;
+      display: flex;
+
+      .date {
+        color: $warning;
+        font-size: 11px;
+        font-style: italic;
+        margin-left: 0.5rem;
+      }
+    }
+
+    h1,
+    h5 {
+      text-transform: capitalize;
+    }
+  }
+}
