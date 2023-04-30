@@ -16,6 +16,18 @@
     .navLink {
       align-items: center;
       display: flex;
+
+      .badge {
+        align-items: center;
+        background-color: $primary;
+        border-radius: 50%;
+        color: $secondary;
+        display: flex;
+        justify-content: center;
+        height: 20px;
+        margin-left: 0.25rem;
+        width: 20px;
+      }
     }
 
     .profile {
@@ -36,6 +48,18 @@
         .profileLink {
           align-items: center;
           display: flex;
+
+          .badge {
+            align-items: center;
+            background-color: $primary;
+            border-radius: 50%;
+            color: $secondary;
+            display: flex;
+            justify-content: center;
+            height: 20px;
+            margin-left: 0.25rem;
+            width: 20px;
+          }
         }
       }
     }
