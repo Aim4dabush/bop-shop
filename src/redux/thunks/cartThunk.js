@@ -11,10 +11,11 @@ export const getShopData = () => {
   return (dispatch) => {
     try {
       onValue(shopRef, (results) => {
-        const list = results.val()?.cart;
-        if (list) {
-          dispatch(cartActions.setGetShopCart(list));
+        if (results.val() === null) {
+          return;
         }
+        const list = results.val().post;
+        dispatch(cartActions.setGetShopCart(list));
       });
     } catch (err) {
       dispatch(
@@ -32,7 +33,10 @@ export const getWishData = () => {
   return (dispatch) => {
     try {
       onValue(wishRef, (results) => {
-        const list = results.val()?.cart;
+        if (results.val() === null) {
+          return;
+        }
+        const list = results.val().post;
         dispatch(cartActions.setGetWishCart(list));
       });
     } catch (err) {
@@ -50,7 +54,7 @@ export const getWishData = () => {
 export const postShopData = (post) => {
   return (dispatch) => {
     try {
-      set(shopRef, { cart: post });
+      set(shopRef, { post });
       dispatch(
         notificationActions.setInfo({
           show: true,
@@ -73,7 +77,7 @@ export const postShopData = (post) => {
 export const postWishData = (post) => {
   return (dispatch) => {
     try {
-      set(wishRef, { cart: post });
+      set(wishRef, { post });
       dispatch(
         notificationActions.setInfo({
           show: true,
