@@ -1,4 +1,4 @@
-import { get, set, onValue } from "firebase/database";
+import { set, onValue } from "firebase/database";
 
 //actions
 import { cartActions } from "../slices/cartSlice";
