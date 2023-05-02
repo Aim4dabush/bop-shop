@@ -6,7 +6,6 @@
   color: $primary;
   display: flex;
   flex-grow: 1;
-  padding: 1rem;
 
   &:hover {
     color: $modal;
@@ -19,10 +18,17 @@
   color: $secondary;
   display: flex;
   flex-grow: 1;
-  padding: 1rem;
 
   &:hover {
     color: $modal;
     cursor: pointer;
   }
+}
+
+.noPad {
+  padding: 0;
+}
+
+.pad {
+  padding: 1rem;
 }

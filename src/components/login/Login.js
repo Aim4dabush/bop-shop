@@ -87,7 +87,7 @@ const Login = () => {
       </form>
       <p className={styles.registrationLink}>
         Don't have an account?{" "}
-        <Link colorPrimary={false} path={"/registration"}>
+        <Link colorPrimary={false} path={"/registration"} padding={false}>
           Click here
         </Link>
       </p>
