@@ -30,8 +30,7 @@ const NavBar = () => {
   const wish = useSelector((state) => state.cart.getWishCart);
   const [showProfileOptions, setShowProfileOptions] = useState(false);
   const [showLinks, setShowLinks] = useState(false);
-  const [windowSize, setWindowSize] = useState(window.innerWidth);
-  console.log(windowSize);
+  const [windowSize, setWindowSize] = useState();
 
   const mouseEnter = () => {
     setShowProfileOptions(true);
@@ -55,6 +54,8 @@ const NavBar = () => {
     };
 
     window.addEventListener("resize", resizeHandler);
+
+    resizeHandler();
 
     if (windowSize > 540) {
       setShowLinks(false);
