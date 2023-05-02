@@ -14,7 +14,8 @@ export const getShopData = () => {
         if (results.val() === null) {
           return;
         }
-        const list = results.val().post;
+
+        const list = results.val().cart;
         dispatch(cartActions.setGetShopCart(list));
       });
     } catch (err) {
@@ -36,7 +37,7 @@ export const getWishData = () => {
         if (results.val() === null) {
           return;
         }
-        const list = results.val().post;
+        const list = results.val().cart;
         dispatch(cartActions.setGetWishCart(list));
       });
     } catch (err) {
@@ -51,10 +52,10 @@ export const getWishData = () => {
   };
 };
 
-export const postShopData = (post) => {
+export const postShopData = (cart) => {
   return (dispatch) => {
     try {
-      set(shopRef, { post });
+      set(shopRef, { cart });
       dispatch(
         notificationActions.setInfo({
           show: true,
@@ -74,10 +75,10 @@ export const postShopData = (post) => {
   };
 };
 
-export const postWishData = (post) => {
+export const postWishData = (cart) => {
   return (dispatch) => {
     try {
-      set(wishRef, { post });
+      set(wishRef, { cart });
       dispatch(
         notificationActions.setInfo({
           show: true,

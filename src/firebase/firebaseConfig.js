@@ -14,15 +14,14 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const user = JSON.parse(localStorage.getItem("user"));
-const id = user.id;
 
 //Authentication
 export const auth = getAuth(app);
 
 //Realtime Database
 const realtimeDB = getDatabase(app);
-export const shopRef = ref(realtimeDB, `users/${id}/shop`);
-export const wishRef = ref(realtimeDB, `users/${id}/wish`);
+export const shopRef = ref(realtimeDB, `users/${user?.id}/shop`);
+export const wishRef = ref(realtimeDB, `users/${user?.id}/wish`);
 
 //Firestore Database
 const firestoreDB = getFirestore(app);
