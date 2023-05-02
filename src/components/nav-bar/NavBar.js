@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-//actions
-import { windowActions } from "../../redux/slices/windowSlice";
-
 //components
 import Button from "../shared/button/Button";
 import Link from "../shared/link/Link";
@@ -30,10 +27,10 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const shop = useSelector((state) => state.cart.getShopCart);
   const { user } = useSelector((state) => state.auth);
-  const { windowSize } = useSelector((state) => state.window);
   const wish = useSelector((state) => state.cart.getWishCart);
   const [showProfileOptions, setShowProfileOptions] = useState(false);
   const [showLinks, setShowLinks] = useState(false);
+  const [windowSize, setWindowSize] = useState();
 
   const mouseEnter = () => {
     setShowProfileOptions(true);
@@ -53,7 +50,7 @@ const NavBar = () => {
 
   useEffect(() => {
     const resizeHandler = () => {
-      dispatch(windowActions.setWindowSize(window.innerWidth));
+      setWindowSize(window.innerWidth);
     };
 
     window.addEventListener("resize", resizeHandler);
@@ -73,7 +70,11 @@ const NavBar = () => {
         Bop Shop
       </NavLink>
       {windowSize <= 540 && (
-        <Button buttonHandler={showLinkHandler} background={"secondary"}>
+        <Button
+          buttonHandler={showLinkHandler}
+          background={"secondary"}
+          tip={""}
+        >
           {showLinks ? <FaTimes /> : <FaBars />}
         </Button>
       )}

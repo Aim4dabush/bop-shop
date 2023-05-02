@@ -4,14 +4,13 @@
   background-color: $secondary;
   color: $primary;
   display: flex;
+  justify-content: space-between;
   padding: 0 1rem;
   position: fixed;
   width: 100%;
 
   .desktopView {
     display: flex;
-    flex-grow: 1;
-    justify-content: space-evenly;
 
     .navLink {
       align-items: center;
@@ -104,7 +103,6 @@
 
   .title {
     color: $primary;
-    flex-grow: 4;
     font-size: 2em;
     text-transform: uppercase;
 
