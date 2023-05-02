@@ -30,7 +30,8 @@ const NavBar = () => {
   const wish = useSelector((state) => state.cart.getWishCart);
   const [showProfileOptions, setShowProfileOptions] = useState(false);
   const [showLinks, setShowLinks] = useState(false);
-  const [windowSize, setWindowSize] = useState();
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
+  console.log(windowSize);
 
   const mouseEnter = () => {
     setShowProfileOptions(true);
@@ -54,8 +55,6 @@ const NavBar = () => {
     };
 
     window.addEventListener("resize", resizeHandler);
-
-    resizeHandler();
 
     if (windowSize > 540) {
       setShowLinks(false);
@@ -84,7 +83,7 @@ const NavBar = () => {
         } ${showLinks ? styles.open : styles.close}`}
       >
         <li className={styles.navLink}>
-          <Link colorPrimary={true} path={"/cart"}>
+          <Link colorPrimary={true} path={"/cart"} padding={true}>
             <FaShoppingCart /> Cart{" "}
             {shop?.length > 0 && user.token && (
               <span className={styles.badge}>{shop.length}</span>
@@ -92,7 +91,7 @@ const NavBar = () => {
           </Link>
         </li>
         <li className={styles.navLink}>
-          <Link colorPrimary={true} path={"/checkout"}>
+          <Link colorPrimary={true} path={"/checkout"} padding={true}>
             <FaShoppingBag />
             Checkout
           </Link>
@@ -111,17 +110,25 @@ const NavBar = () => {
             onMouseLeave={mouseLeave}
           >
             <li className={styles.profileLink}>
-              <Link colorPrimary={true} path={"/profile"}>
+              <Link colorPrimary={true} path={"/profile"} padding={true}>
                 Dashboard
               </Link>
             </li>
             <li className={styles.profileLink}>
-              <Link colorPrimary={true} path={"/profile/history"}>
+              <Link
+                colorPrimary={true}
+                path={"/profile/history"}
+                padding={true}
+              >
                 Order History
               </Link>
             </li>
             <li className={styles.profileLink}>
-              <Link colorPrimary={true} path={"/profile/wish-list"}>
+              <Link
+                colorPrimary={true}
+                path={"/profile/wish-list"}
+                padding={true}
+              >
                 Wish List{" "}
                 {wish?.length > 0 && user.token && (
                   <span className={styles.badge}>{wish.length}</span>
@@ -132,7 +139,7 @@ const NavBar = () => {
         </li>
         {!user.token && (
           <li className={styles.navLink}>
-            <Link colorPrimary={true} path={"/login"}>
+            <Link colorPrimary={true} path={"/login"} padding={true}>
               Login
             </Link>
           </li>
