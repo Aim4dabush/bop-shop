@@ -3,7 +3,7 @@ import { useRef } from "react";
 //styles
 import styles from "./ButtonInputGroup.module.scss";
 
-const ButtonInputGroup = ({ setValue }) => {
+const ButtonInputGroup = ({ setValue, value }) => {
   const inputRef = useRef();
 
   const decrementHandler = () => {
@@ -29,7 +29,7 @@ const ButtonInputGroup = ({ setValue }) => {
         className={styles.input}
         type="number"
         ref={inputRef}
-        defaultValue={1}
+        defaultValue={value}
       />
       <button
         className={`${styles.btn} ${styles.right}`}
