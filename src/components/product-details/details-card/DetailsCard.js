@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 //styles
 import styles from "./DetailsCard.module.scss";
 
-//thunk
+//thunks
 import { postShopData, postWishData } from "../../../redux/thunks/cartThunk";
 
 const DetailsCard = () => {
@@ -38,10 +38,8 @@ const DetailsCard = () => {
   } = useSelector((state) => state.products.product);
   const loadData = useSelector((state) => state.cart.loadData);
   const shopData = useSelector((state) => state.cart.postShopCart);
-  const { windowSize } = useSelector((state) => state.window);
   const wishData = useSelector((state) => state.cart.postWishCart);
   const [quantity, setQuantity] = useState(1);
-  console.log(windowSize);
 
   const shopHandler = () => {
     const post = {
@@ -115,13 +113,13 @@ const DetailsCard = () => {
     }
   }, [dispatch, loadData, shopData, wishData]);
   return (
-    <div className={`${styles.card} ${windowSize <= 1280 && styles.nest}`}>
+    <div className={styles.card}>
       <div className={styles.titleWrapper}>
         <h5>{brand}</h5>
         <h1>{title}</h1>
         <h5>{category}</h5>
       </div>
-      <div className={`${styles.contentWrapper} ${styles.air}`}>
+      <div className={styles.contentWrapper}>
         <div className={styles.imgWrapper}>
           <img src={mainPic} alt={title} />
         </div>
@@ -129,19 +127,11 @@ const DetailsCard = () => {
           <div className={styles.row}>
             <p>{description}</p>
           </div>
-          <div
-            className={`${styles.row} ${styles.otherInfo} ${
-              windowSize <= 280 && styles.fold
-            }`}
-          >
-            <div className={styles.rowTwo}>
-              <p>Rating: {rating}</p>
-              <p>Stock: {stock}</p>
-            </div>
-            <div className={styles.rowTwo}>
-              <p>Price: ${price}</p>
-              <ButtonInputGroup setValue={setQuantity} />
-            </div>
+          <div className={`${styles.row} ${styles.otherInfo}`}>
+            <p>Rating: {rating}</p>
+            <p>Stock: {stock}</p>
+            <p>Price: ${price}</p>
+            <ButtonInputGroup setValue={setQuantity} />
           </div>
           <div className={`${styles.row} ${styles.actions}`}>
             <Button
