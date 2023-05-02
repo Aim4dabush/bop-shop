@@ -25,7 +25,7 @@ const WishCard = ({ item }) => {
       </div>
       <div className={styles.contentWrapper}>
         <div className={styles.imgWrapper}>
-          <img src={item.mainPic} alt={item.title} />
+          <img className={styles.img} src={item.mainPic} alt={item.title} />
         </div>
         <div className={styles.infoWrapper}>
           <div className={styles.row}>
