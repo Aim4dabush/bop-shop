@@ -107,8 +107,8 @@ const DetailsCard = () => {
 
   useEffect(() => {
     if (loadData) {
-      dispatch(postShopData(shopData));
-      dispatch(postWishData(wishData));
+      dispatch(postShopData(shopData, "ADD"));
+      dispatch(postWishData(wishData, "ADD"));
       dispatch(cartActions.setLoadData(false));
     }
   }, [dispatch, loadData, shopData, wishData]);
@@ -131,7 +131,7 @@ const DetailsCard = () => {
             <p>Rating: {rating}</p>
             <p>Stock: {stock}</p>
             <p>Price: ${price}</p>
-            <ButtonInputGroup setValue={setQuantity} />
+            <ButtonInputGroup setValue={setQuantity} value={1} />
           </div>
           <div className={`${styles.row} ${styles.actions}`}>
             <Button

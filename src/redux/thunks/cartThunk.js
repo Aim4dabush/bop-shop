@@ -52,17 +52,29 @@ export const getWishData = () => {
   };
 };
 
-export const postShopData = (cart) => {
+export const postShopData = (cart, status) => {
   return (dispatch) => {
     try {
       set(shopRef, { cart });
-      dispatch(
-        notificationActions.setInfo({
-          show: true,
-          status: "Success",
-          message: `Item has been added to your shopping cart successfully`,
-        })
-      );
+      if (status === "ADD") {
+        dispatch(
+          notificationActions.setInfo({
+            show: true,
+            status: "Success",
+            message: "Item has been added to your shopping cart successfully",
+          })
+        );
+      }
+
+      if (status === "UPDATE") {
+        dispatch(
+          notificationActions.setInfo({
+            show: true,
+            status: "Success",
+            message: "Item in shopping cart has been updated successfully",
+          })
+        );
+      }
     } catch (err) {
       dispatch(
         notificationActions.setInfo({
@@ -75,17 +87,29 @@ export const postShopData = (cart) => {
   };
 };
 
-export const postWishData = (cart) => {
+export const postWishData = (cart, status) => {
   return (dispatch) => {
     try {
       set(wishRef, { cart });
-      dispatch(
-        notificationActions.setInfo({
-          show: true,
-          status: "Success",
-          message: "Item has been added to your wish list successfully",
-        })
-      );
+      if (status === "ADD") {
+        dispatch(
+          notificationActions.setInfo({
+            show: true,
+            status: "Success",
+            message: "Item has been added to your shopping cart successfully",
+          })
+        );
+      }
+
+      if (status === "UPDATE") {
+        dispatch(
+          notificationActions.setInfo({
+            show: true,
+            status: "Success",
+            message: "Item in shopping cart has been updated successfully",
+          })
+        );
+      }
     } catch (err) {
       dispatch(
         notificationActions.setInfo({
