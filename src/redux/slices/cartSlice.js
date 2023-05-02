@@ -13,10 +13,12 @@ const cartSlice = createSlice({
     setGetShopCart(state, action) {
       state.getShopCart = [];
       state.getShopCart = action.payload;
+      state.postShopCart = state.getShopCart;
     },
     setGetWishCart(state, action) {
       state.getWishCart = [];
       state.getWishCart = action.payload;
+      state.postWishCart = state.getWishCart;
     },
     setLoadData(state, action) {
       state.loadData = action.payload;
