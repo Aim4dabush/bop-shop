@@ -25,9 +25,9 @@ import styles from "./NavBar.module.scss";
 
 const NavBar = () => {
   const dispatch = useDispatch();
-  const shoppingCart = useSelector((state) => state.cart.ShopCart);
+  const shoppingCart = useSelector((state) => state.cart.shopCart);
   const { user } = useSelector((state) => state.auth);
-  const wishList = useSelector((state) => state.cart.WishCart);
+  const wishList = useSelector((state) => state.cart.wishCart);
   const [showProfileOptions, setShowProfileOptions] = useState(false);
   const [showLinks, setShowLinks] = useState(false);
   const [windowSize, setWindowSize] = useState();
