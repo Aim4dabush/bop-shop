@@ -73,6 +73,7 @@ export const postWishList = (data) => {
       }
 
       set(wishRef, { cart: newCart });
+      dispatch(getWishList());
       dispatch(
         notificationActions.setInfo({
           show: true,
@@ -92,7 +93,7 @@ export const postWishList = (data) => {
   };
 };
 
-export const deleteItem = (data) => {
+export const deleteItem = (id) => {
   return async (dispatch) => {
     let cart = [];
     try {
@@ -104,7 +105,8 @@ export const deleteItem = (data) => {
 
       cart = result.val().cart;
       const newCart = cart.reduce((arr, item) => {
-        if (item.id === data.id) {
+        console.log(typeof item.id, typeof id);
+        if (item.id === id) {
           return [...arr];
         } else {
           return [...arr, item];
@@ -112,6 +114,7 @@ export const deleteItem = (data) => {
       }, []);
 
       set(wishRef, { cart: newCart });
+      dispatch(getWishList());
       dispatch(
         notificationActions.setInfo({
           show: true,

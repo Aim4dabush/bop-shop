@@ -4,4 +4,10 @@
   flex-direction: column;
   margin-top: 1rem;
   padding: 1rem;
+
+  .ban {
+    align-items: center;
+    display: flex;
+    gap: 0.25rem;
+  }
 }

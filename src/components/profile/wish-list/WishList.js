@@ -1,18 +1,35 @@
+import { useEffect } from "react";
+
 //components
 import WishCard from "./wish-card/WishCard";
 
+//react icons
+import { FaBan } from "react-icons/fa";
+
 //redux
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+//services
+import { getWishList } from "../../../firebase/services/wish-list-service";
 
 //styles
 import styles from "./WishList.module.scss";
 
 const WishList = () => {
-  const wish = useSelector((state) => state.cart.getWishCart);
+  const dispatch = useDispatch();
+  const wishList = useSelector((state) => state.cart.wishCart);
 
+  useEffect(() => {
+    dispatch(getWishList());
+  }, [dispatch]);
   return (
     <section className={styles.container}>
-      {wish?.map((item) => {
+      {wishList?.length === 0 && (
+        <p className={styles.ban}>
+          <FaBan /> No items on wish list <FaBan />
+        </p>
+      )}
+      {wishList?.map((item) => {
         return <WishCard key={item.id} item={item} />;
       })}
     </section>
