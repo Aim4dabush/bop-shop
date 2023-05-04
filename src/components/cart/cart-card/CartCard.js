@@ -24,24 +24,24 @@ const CartCard = ({ item }) => {
   const [quantity, setQuantity] = useState(item?.quantity);
 
   const deleteShoppingCart = () => {
-    // dispatch(deleteItem(item.id));
+    dispatch(deleteItem(item.id));
   };
 
   const updateShoppingCart = () => {
-    // const post = {
-    //   brand: item.brand,
-    //   category: item.category,
-    //   description: item.description,
-    //   id: item.id,
-    //   mainPic: item.mainPic,
-    //   price: item.price,
-    //   quantity,
-    //   rating: item.rating,
-    //   stock: item.stock,
-    //   subtotal: quantity * item.price,
-    //   title: item.title,
-    // };
-    // dispatch(postShoppingCart(post));
+    const post = {
+      brand: item.brand,
+      category: item.category,
+      description: item.description,
+      id: item.id,
+      mainPic: item.mainPic,
+      price: item.price,
+      quantity,
+      rating: item.rating,
+      stock: item.stock,
+      subtotal: quantity * item.price,
+      title: item.title,
+    };
+    dispatch(postShoppingCart(post));
   };
 
   return (
