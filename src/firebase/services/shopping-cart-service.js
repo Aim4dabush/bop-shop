@@ -32,7 +32,7 @@ export const getShoppingCart = () => {
   };
 };
 
-export const postShoppingCart = (data, status) => {
+export const postShoppingCart = (data) => {
   return async (dispatch) => {
     let cart = [];
     try {

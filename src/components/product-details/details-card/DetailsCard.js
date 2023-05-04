@@ -14,7 +14,7 @@ import { FaCartPlus, FaHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 
 //services
-import { postShoppingCart } from "../../../firebase/services/shop-service";
+import { postShoppingCart } from "../../../firebase/services/shopping-cart-service";
 import { postWishList } from "../../../firebase/services/wish-list-service";
 
 //styles
@@ -51,7 +51,7 @@ const DetailsCard = () => {
       title,
     };
 
-    dispatch(postShoppingCart(post, "ADD"));
+    dispatch(postShoppingCart(post));
   };
 
   const wishHandler = () => {
@@ -69,7 +69,7 @@ const DetailsCard = () => {
       title,
     };
 
-    dispatch(postWishList(post, "ADD"));
+    dispatch(postWishList(post));
   };
 
   return (

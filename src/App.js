@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 //services
 import { getUserProfile } from "./firebase/services/profile-service";
-import { getShoppingCart } from "./firebase/services/shop-service";
+import { getShoppingCart } from "./firebase/services/shopping-cart-service";
 import { getWishList } from "./firebase/services/wish-list-service";
 
 //styles
