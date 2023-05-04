@@ -1,0 +1,14 @@
+@import "../../../SassVariables.scss";
+
+.card {
+  box-shadow: 6px 6px 10px black;
+  width: 90%;
+
+  .footer {
+    margin-top: 1rem;
+    .total {
+      font-style: italic;
+      font-weight: $bold;
+    }
+  }
+}

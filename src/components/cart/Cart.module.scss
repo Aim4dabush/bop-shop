@@ -1,0 +1,14 @@
+.container {
+  display: grid;
+  grid-template-areas: "list summary";
+  margin-top: 1rem;
+
+  .item_one {
+    grid: "list";
+    padding: 0 1rem;
+  }
+
+  .item_two {
+    grid: "summary";
+  }
+}
