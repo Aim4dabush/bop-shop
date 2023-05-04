@@ -7,7 +7,7 @@ import Products from "../../components/products/Products";
 import { useDispatch, useSelector } from "react-redux";
 
 //thunks
-import { getProducts } from "../../redux/thunks/productsThunk";
+import { getProducts } from "../../firebase/services/products-service";
 
 const ProductsPage = () => {
   const dispatch = useDispatch();

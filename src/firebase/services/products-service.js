@@ -1,6 +1,5 @@
-//Actions
-import { notificationActions } from "../slices/notificationSlice";
-import { productsActions } from "../slices/productsSlice";
+import { notificationActions } from "../../redux/slices/notificationSlice";
+import { productsActions } from "../../redux/slices/productsSlice";
 
 export const getProducts = () => {
   return async (dispatch) => {
