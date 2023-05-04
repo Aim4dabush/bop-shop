@@ -2,10 +2,16 @@ import { cartActions } from "../../redux/slices/cartSlice";
 import { notificationActions } from "../../redux/slices/notificationSlice";
 
 //firebase
-import { shopRef } from "../firebaseConfig";
+import { realtimeDB } from "../firebaseConfig";
 
 //realtime database
-import { get, onValue, set } from "firebase/database";
+import { get, onValue, ref, set } from "firebase/database";
+
+//utils
+import { getUserData } from "../../utils/user-data";
+
+const user = getUserData();
+const shopRef = ref(realtimeDB, `users/${user.id}/shop`);
 
 export const getShoppingCart = () => {
   return (dispatch) => {
@@ -37,6 +43,7 @@ export const postShoppingCart = (data) => {
     let cart = [];
     try {
       const result = await get(shopRef);
+      console.log(result);
       if (!result.val()) {
         cart.push(data);
         set(shopRef, { cart });

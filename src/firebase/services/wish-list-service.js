@@ -2,10 +2,16 @@ import { cartActions } from "../../redux/slices/cartSlice";
 import { notificationActions } from "../../redux/slices/notificationSlice";
 
 //firebase
-import { wishRef } from "../firebaseConfig";
+import { realtimeDB } from "../firebaseConfig";
 
 //realtime database
-import { get, onValue, set } from "firebase/database";
+import { get, onValue, ref, set } from "firebase/database";
+
+//utils
+import { getUserData } from "../../utils/user-data";
+
+const user = getUserData();
+const wishRef = ref(realtimeDB, `users/${user.id}/wish`);
 
 export const getWishList = () => {
   return (dispatch) => {
@@ -32,7 +38,7 @@ export const getWishList = () => {
   };
 };
 
-export const postWishList = (data, status) => {
+export const postWishList = (data) => {
   return async (dispatch) => {
     let cart = [];
     try {
@@ -67,16 +73,52 @@ export const postWishList = (data, status) => {
       }
 
       set(wishRef, { cart: newCart });
+      dispatch(
+        notificationActions.setInfo({
+          show: true,
+          status: "Success",
+          message: "Item added to wish list successfully",
+        })
+      );
+    } catch (err) {
+      dispatch(
+        notificationActions.setInfo({
+          show: true,
+          status: "Error",
+          message: err.message,
+        })
+      );
+    }
+  };
+};
 
-      if (status === "ADD") {
-        dispatch(
-          notificationActions.setInfo({
-            show: true,
-            status: "Success",
-            message: "Item added to wish list successfully",
-          })
-        );
+export const deleteItem = (data) => {
+  return async (dispatch) => {
+    let cart = [];
+    try {
+      const result = await get(wishRef);
+
+      if (!result.val()) {
+        return;
       }
+
+      cart = result.val().cart;
+      const newCart = cart.reduce((arr, item) => {
+        if (item.id === data.id) {
+          return [...arr];
+        } else {
+          return [...arr, item];
+        }
+      }, []);
+
+      set(wishRef, { cart: newCart });
+      dispatch(
+        notificationActions.setInfo({
+          show: true,
+          status: "Success",
+          message: "Item deleted from wish list successfully",
+        })
+      );
     } catch (err) {
       dispatch(
         notificationActions.setInfo({
