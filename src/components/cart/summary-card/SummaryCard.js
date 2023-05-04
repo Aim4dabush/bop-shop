@@ -42,7 +42,7 @@ const SummaryCard = () => {
             return <TableBody key={item.id} item={item} />;
           })}
       </tbody>
-      <tfoot className={styles.footer}>
+      <tfoot>
         <tr>
           <td></td>
           <td></td>

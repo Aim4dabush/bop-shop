@@ -4,11 +4,12 @@
   box-shadow: 6px 6px 10px black;
   width: 90%;
 
-  .footer {
-    margin-top: 1rem;
-    .total {
-      font-style: italic;
-      font-weight: $bold;
-    }
+  th {
+    border: 1px solid $secondary;
+  }
+
+  .total {
+    font-style: italic;
+    font-weight: $bold;
   }
 }
