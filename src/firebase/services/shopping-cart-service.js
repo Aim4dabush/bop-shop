@@ -43,7 +43,7 @@ export const postShoppingCart = (data) => {
     let cart = [];
     try {
       const result = await get(shopRef);
-      console.log(result);
+
       if (!result.val()) {
         cart.push(data);
         set(shopRef, { cart });
@@ -74,6 +74,7 @@ export const postShoppingCart = (data) => {
       }
 
       set(shopRef, { cart: newCart });
+      dispatch(getShoppingCart());
       dispatch(
         notificationActions.setInfo({
           show: true,
@@ -90,5 +91,37 @@ export const postShoppingCart = (data) => {
         })
       );
     }
+  };
+};
+
+export const deleteItem = (id) => {
+  return async (dispatch) => {
+    let cart = [];
+    try {
+      const result = await get(shopRef);
+
+      if (!result.val()) {
+        return;
+      }
+
+      cart = result.val().cart;
+      const newCart = cart.reduce((arr, item) => {
+        if (item.id === id) {
+          return [...arr];
+        } else {
+          return [...arr, item];
+        }
+      }, []);
+
+      set(shopRef, { cart: newCart });
+      dispatch(getShoppingCart());
+      dispatch(
+        notificationActions.setInfo({
+          show: true,
+          status: "Success",
+          message: "Item deleted from shopping cart successfully",
+        })
+      );
+    } catch (err) {}
   };
 };
