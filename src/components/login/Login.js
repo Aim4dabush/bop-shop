@@ -9,11 +9,11 @@ import useValidation from "../../hooks/useValidation";
 //redux
 import { useDispatch } from "react-redux";
 
+//services
+import { login } from "../../firebase/services/auth-service";
+
 //styles
 import styles from "./Login.module.scss";
-
-//thunks
-import { login } from "../../redux/thunks/authThunk";
 
 const Login = () => {
   const dispatch = useDispatch();

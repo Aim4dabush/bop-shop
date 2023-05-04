@@ -12,10 +12,7 @@ import { Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 //services
-import {
-  getUserProfile,
-  postUserProfile,
-} from "./firebase/services/profile-service";
+import { getUserProfile } from "./firebase/services/profile-service";
 import { getShoppingCart } from "./firebase/services/shop-service";
 import { getWishList } from "./firebase/services/wish-list-service";
 
@@ -28,8 +25,7 @@ function App() {
   const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(postUserProfile({ name: user.name, email: user.email }));
-    dispatch(getUserProfile());
+    dispatch(getUserProfile(user));
     dispatch(getShoppingCart());
     dispatch(getWishList());
   }, [dispatch, user]);

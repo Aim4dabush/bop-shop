@@ -5,13 +5,17 @@ import Input from "../shared/input/Input";
 //hooks
 import useValidation from "../../hooks/useValidation";
 
+//redux
+import { useDispatch } from "react-redux";
+
+//service
+import { registerUser } from "../../firebase/services/auth-service";
+
 //styles
 import styles from "./Registration.module.scss";
 
-//thunks
-import { registerUser } from "../../redux/thunks/authThunk";
-
 const Registration = () => {
+  const dispatch = useDispatch();
   const {
     error: emailError,
     isValid: emailValid,
@@ -57,7 +61,7 @@ const Registration = () => {
       return;
     }
 
-    registerUser(email, name, password);
+    dispatch(registerUser(email, name, password));
 
     confirmReset();
     emailReset();

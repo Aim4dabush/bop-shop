@@ -2,13 +2,14 @@ import { cartActions } from "../../redux/slices/cartSlice";
 import { notificationActions } from "../../redux/slices/notificationSlice";
 
 //firebase
-import { profileRef } from "../firebaseConfig";
+import { realtimeDB } from "../firebaseConfig";
 
 //realtime database
-import { onValue, set } from "firebase/database";
+import { onValue, ref, set } from "firebase/database";
 
-export const getUserProfile = () => {
+export const getUserProfile = (data) => {
   return (dispatch) => {
+    const profileRef = ref(realtimeDB, `users/${data.id}/profile`);
     try {
       onValue(profileRef, (results) => {
         if (results.val() === null) {
@@ -34,6 +35,7 @@ export const getUserProfile = () => {
 
 export const postUserProfile = (data) => {
   return (dispatch) => {
+    const profileRef = ref(realtimeDB, `users/${data.id}/profile`);
     let info = {
       billingAddress: data.billingAddress ? data.billingAddress : {},
       shippingAddress: data.shippingAddress ? data.shippingAddress : {},

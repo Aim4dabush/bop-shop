@@ -17,11 +17,11 @@ import {
 //redux
 import { useDispatch, useSelector } from "react-redux";
 
+//services
+import { logout } from "../../firebase/services/auth-service";
+
 //styles
 import styles from "./NavBar.module.scss";
-
-//thunks
-import { logout } from "../../redux/thunks/authThunk";
 
 const NavBar = () => {
   const dispatch = useDispatch();

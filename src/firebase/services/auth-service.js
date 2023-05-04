@@ -1,31 +1,46 @@
+import { authActions } from "../../redux/slices/authSlice";
+import { cartActions } from "../../redux/slices/cartSlice";
+import { notificationActions } from "../../redux/slices/notificationSlice";
+
+//firebase
+import { auth } from "../firebaseConfig";
+
+//Authentication
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { auth } from "../../firebase/firebaseConfig";
 
-//actions
-import { authActions } from "../slices/authSlice";
-import { cartActions } from "../slices/cartSlice";
-import { notificationActions } from "../slices/notificationSlice";
+//services
+import { postUserProfile } from "./profile-service";
 
 export const registerUser = (email, name, password) => {
   return async (dispatch) => {
     try {
-      const results = await createUserWithEmailAndPassword(
+      const result = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
-
-      if (!results) {
-        throw new Error("Unable to get results");
+      console.log(result);
+      if (!result) {
+        throw new Error("Unable to get credentials");
       }
 
-      const user = results.user;
+      const user = result.user;
+      console.log(user);
       updateProfile(user, { displayName: name });
+      dispatch(
+        postUserProfile({
+          billingAddress: "",
+          shippingAddress: "",
+          name,
+          email,
+          id: user.uid,
+        })
+      );
       dispatch(
         notificationActions.setInfo({
           show: true,
@@ -48,13 +63,13 @@ export const registerUser = (email, name, password) => {
 export const login = (email, password) => {
   return async (dispatch) => {
     try {
-      const results = await signInWithEmailAndPassword(auth, email, password);
+      const result = await signInWithEmailAndPassword(auth, email, password);
 
-      if (!results) {
-        throw new Error("Unable to get results");
+      if (!result) {
+        throw new Error("Unable to get credentials");
       }
 
-      const user = await results.user.getIdTokenResult();
+      const user = await result.user.getIdTokenResult();
 
       if (!user) {
         throw new Error("Unable to get user token");
@@ -90,17 +105,28 @@ export const login = (email, password) => {
 
 export const logout = () => {
   return (dispatch) => {
-    signOut(auth);
-    dispatch(authActions.setUserReset());
-    dispatch(cartActions.setPostShopCartReset());
-    dispatch(cartActions.setPostWishCartReset());
-    localStorage.clear();
-    dispatch(
-      notificationActions.setInfo({
-        show: true,
-        status: "Logout",
-        message: "Logout successful!",
-      })
-    );
+    try {
+      signOut(auth);
+      dispatch(authActions.setUserReset());
+      dispatch(cartActions.setShopCartReset());
+      dispatch(cartActions.setWishCartReset());
+      dispatch(cartActions.setUserProfileReset());
+      localStorage.clear();
+      dispatch(
+        notificationActions.setInfo({
+          show: true,
+          status: "Logout",
+          message: "Logout successful",
+        })
+      );
+    } catch (err) {
+      dispatch(
+        notificationActions.setInfo({
+          show: true,
+          status: "Error",
+          message: err.message,
+        })
+      );
+    }
   };
 };

@@ -23,10 +23,9 @@ const user = getUserData();
 export const auth = getAuth(app);
 
 //Realtime Database
-const realtimeDB = getDatabase(app);
+export const realtimeDB = getDatabase(app);
 export const shopRef = ref(realtimeDB, `users/${user?.id}/shop`);
 export const wishRef = ref(realtimeDB, `users/${user?.id}/wish`);
-export const profileRef = ref(realtimeDB, `users/${user?.id}/profile`);
 
 //Firestore Database
 export const firestoreDB = getFirestore(app);
