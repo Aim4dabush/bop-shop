@@ -1,0 +1,87 @@
+import { cartActions } from "../../redux/slices/cartSlice";
+import { notificationActions } from "../../redux/slices/notificationSlice";
+
+//firebase
+import { shopRef } from "../firebaseConfig";
+
+//realtime database
+import { get, onValue, set } from "firebase/database";
+
+export const getShoppingCart = () => {
+  return (dispatch) => {
+    let shoppingCart = [];
+    try {
+      onValue(shopRef, (result) => {
+        if (!result.val()) {
+          dispatch(cartActions.setShopCart(shoppingCart));
+          return;
+        }
+
+        shoppingCart = result.val().cart;
+        dispatch(cartActions.setShopCart(shoppingCart));
+      });
+    } catch (err) {
+      dispatch(
+        notificationActions.setInfo({
+          show: true,
+          status: "Error",
+          message: err.message,
+        })
+      );
+    }
+  };
+};
+
+export const postShoppingCart = (data, status) => {
+  return async (dispatch) => {
+    let cart = [];
+    try {
+      const result = await get(shopRef);
+      if (!result.val()) {
+        cart.push(data);
+        set(shopRef, { cart });
+        dispatch(
+          notificationActions.setInfo({
+            show: true,
+            status: "Success",
+            message: "Item added to shopping cart successfully",
+          })
+        );
+        return;
+      }
+
+      cart = result.val().cart;
+
+      let duplicate = false;
+      const newCart = cart.reduce((arr, item) => {
+        if (item.id === data.id) {
+          duplicate = true;
+          return [...arr, data];
+        } else {
+          return [...arr, item];
+        }
+      }, []);
+
+      if (!duplicate) {
+        newCart.push(data);
+      }
+
+      set(shopRef, { cart: newCart });
+      dispatch(
+        notificationActions.setInfo({
+          show: true,
+          status: "Success",
+          message: "Item added to shopping cart successfully",
+        })
+      );
+    } catch (err) {
+      dispatch(
+        notificationActions.setInfo({
+          show: true,
+          status: "Error",
+          message: err.message,
+        })
+      );
+    }
+  };
+};

@@ -25,9 +25,9 @@ import { logout } from "../../redux/thunks/authThunk";
 
 const NavBar = () => {
   const dispatch = useDispatch();
-  const shop = useSelector((state) => state.cart.getShopCart);
+  const shoppingCart = useSelector((state) => state.cart.ShopCart);
   const { user } = useSelector((state) => state.auth);
-  const wish = useSelector((state) => state.cart.getWishCart);
+  const wishList = useSelector((state) => state.cart.WishCart);
   const [showProfileOptions, setShowProfileOptions] = useState(false);
   const [showLinks, setShowLinks] = useState(false);
   const [windowSize, setWindowSize] = useState();
@@ -86,8 +86,8 @@ const NavBar = () => {
         <li className={styles.navLink}>
           <Link colorPrimary={true} path={"/cart"} padding={true}>
             <FaShoppingCart /> Cart{" "}
-            {shop?.length > 0 && user.token && (
-              <span className={styles.badge}>{shop.length}</span>
+            {shoppingCart?.length > 0 && user.token && (
+              <span className={styles.badge}>{shoppingCart.length}</span>
             )}
           </Link>
         </li>
@@ -131,8 +131,8 @@ const NavBar = () => {
                 padding={true}
               >
                 Wish List{" "}
-                {wish?.length > 0 && user.token && (
-                  <span className={styles.badge}>{wish.length}</span>
+                {wishList?.length > 0 && user.token && (
+                  <span className={styles.badge}>{wishList.length}</span>
                 )}
               </Link>
             </li>
