@@ -1,7 +1,4 @@
-import { useEffect, useState } from "react";
-
-//actions
-import { cartActions } from "../../../redux/slices/cartSlice";
+import { useState } from "react";
 
 //components
 import Button from "../../shared/button/Button";
@@ -16,11 +13,12 @@ import { FaCartPlus, FaHeart } from "react-icons/fa";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 
+//services
+import { postShoppingCart } from "../../../firebase/services/shop-service";
+import { postWishList } from "../../../firebase/services/wish-list-service";
+
 //styles
 import styles from "./DetailsCard.module.scss";
-
-//thunks
-import { postShopData, postWishData } from "../../../redux/thunks/cartThunk";
 
 const DetailsCard = () => {
   const dispatch = useDispatch();
@@ -36,9 +34,6 @@ const DetailsCard = () => {
     stock,
     title,
   } = useSelector((state) => state.products.product);
-  const loadData = useSelector((state) => state.cart.loadData);
-  const shopData = useSelector((state) => state.cart.postShopCart);
-  const wishData = useSelector((state) => state.cart.postWishCart);
   const [quantity, setQuantity] = useState(1);
 
   const shopHandler = () => {
@@ -47,7 +42,6 @@ const DetailsCard = () => {
       category,
       description,
       id,
-      images,
       mainPic,
       price,
       quantity: parseInt(quantity),
@@ -57,19 +51,7 @@ const DetailsCard = () => {
       title,
     };
 
-    const index = shopData.findIndex((item) => {
-      return item.id === post.id;
-    });
-
-    if (index >= 0) {
-      dispatch(
-        cartActions.setReplaceDuplicateShopItem({ index, duplicate: post })
-      );
-    } else {
-      dispatch(cartActions.setPostShopCart(post));
-    }
-
-    dispatch(cartActions.setLoadData(true));
+    dispatch(postShoppingCart(post, "ADD"));
   };
 
   const wishHandler = () => {
@@ -79,7 +61,6 @@ const DetailsCard = () => {
       date: DateTime.now().toFormat("yyyy-MM-dd"),
       description,
       id,
-      images,
       mainPic,
       price,
       quantity: parseInt(quantity),
@@ -88,30 +69,9 @@ const DetailsCard = () => {
       title,
     };
 
-    const index = wishData.findIndex((item) => {
-      return item.id === post.id;
-    });
-
-    if (index >= 0) {
-      dispatch(
-        cartActions.setReplaceDuplicateWishItem({
-          index,
-          duplicate: post,
-        })
-      );
-    } else {
-      dispatch(cartActions.setPostWishCart(post));
-    }
-    dispatch(cartActions.setLoadData(true));
+    dispatch(postWishList(post, "ADD"));
   };
 
-  useEffect(() => {
-    if (loadData) {
-      dispatch(postShopData(shopData, "ADD"));
-      dispatch(postWishData(wishData, "ADD"));
-      dispatch(cartActions.setLoadData(false));
-    }
-  }, [dispatch, loadData, shopData, wishData]);
   return (
     <div className={styles.card}>
       <div className={styles.titleWrapper}>
