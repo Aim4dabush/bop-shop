@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 //components
 import Button from "../../shared/button/Button";
 import TableBody from "./table-body/TableBody";
@@ -12,9 +14,12 @@ import { useSelector } from "react-redux";
 import styles from "./SummaryCard.module.scss";
 
 const SummaryCard = () => {
+  const navigate = useNavigate();
   const shoppingCart = useSelector((state) => state.cart.shopCart);
 
-  const checkoutHandler = () => {};
+  const checkoutHandler = () => {
+    navigate("/checkout", { replace: true });
+  };
 
   const total = shoppingCart.reduce((arr, item) => {
     arr = arr + item.subtotal;
@@ -45,7 +50,7 @@ const SummaryCard = () => {
           <td>
             <Button
               background={"success"}
-              tip={"Checkout"}
+              tip={""}
               buttonHandler={checkoutHandler}
             >
               <FaDollarSign />
