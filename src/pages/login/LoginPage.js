@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const user = useSelector((state) => state.auth.user);
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (user.token) {
