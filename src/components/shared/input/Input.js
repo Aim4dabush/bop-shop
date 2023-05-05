@@ -9,11 +9,12 @@ const Input = ({
   message,
   onBlurHandler,
   onChangeHandler,
+  stretch,
   type,
   value,
 }) => {
   return (
-    <div className={styles.inputControl}>
+    <div className={`${styles.inputControl} ${stretch && styles.stretch}`}>
       <label htmlFor={id}>{children}</label>
       <input
         className={`${styles.input} ${classStyle}`}
