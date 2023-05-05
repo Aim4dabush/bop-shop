@@ -67,15 +67,15 @@ const CartCard = ({ item }) => {
           </div>
           <div className={`${styles.row} ${styles.actions}`}>
             <Button
-              background={"warning"}
-              tip={"Update"}
+              background={"danger"}
+              tip={"Delete"}
               buttonHandler={deleteShoppingCart}
             >
               <FaTrashAlt />
             </Button>
             <Button
-              background={"danger"}
-              tip={"Delete"}
+              background={"warning"}
+              tip={"Update"}
               buttonHandler={updateShoppingCart}
             >
               <FaUndo />
