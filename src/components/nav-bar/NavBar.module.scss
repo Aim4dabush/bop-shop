@@ -5,9 +5,10 @@
   color: $primary;
   display: flex;
   justify-content: space-between;
-  padding: 0 1rem;
+  padding: 0 0.5rem;
   position: fixed;
   width: 100%;
+  z-index: 1;
 
   .desktopView {
     display: flex;
@@ -120,10 +121,22 @@
       transition: transform 500ms ease-out;
     }
 
+    .desktopView {
+      display: none;
+    }
+
+    .mobileView {
+      display: initial;
+    }
+
     .open {
       transform: translateX(0);
       transform-origin: left;
       transition: transform 500ms ease-in;
+    }
+
+    .title {
+      font-size: 1.5rem;
     }
   }
 }
