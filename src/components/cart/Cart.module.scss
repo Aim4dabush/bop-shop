@@ -1,14 +1,28 @@
 .container {
-  display: grid;
-  grid-template-areas: "list summary";
+  display: flex;
   margin-top: 1rem;
+  padding: 0 1rem;
 
   .item_one {
-    grid: "list";
-    padding: 0 1rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 0 0.5rem;
+    width: 100%;
   }
 
   .item_two {
-    grid: "summary";
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 0 0.5rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    align-items: center;
+    flex-direction: column-reverse;
   }
 }
