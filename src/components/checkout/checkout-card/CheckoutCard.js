@@ -12,6 +12,9 @@ import ShippingAddress from "./shipping-address/ShippingAddress";
 //hooks
 import useValidation from "../../../hooks/useValidation";
 
+//luxon
+import { DateTime } from "luxon";
+
 //redux
 import { useDispatch } from "react-redux";
 
@@ -21,9 +24,7 @@ import styles from "./CheckoutCard.module.scss";
 const CheckoutCard = () => {
   const dispatch = useDispatch();
   const [equals, setEquals] = useState(true);
-  const [twoDay, setTwoDay] = useState(false);
-  const [fiveDay, setFiveDay] = useState(false);
-  const [free, setFree] = useState(true);
+  const [shipping, setShipping] = useState();
 
   const {
     error: billingCityError,
@@ -130,8 +131,8 @@ const CheckoutCard = () => {
     resetHandler: shippingStateReset,
   } = useValidation((value) => value.trim() !== "");
   const {
-    error: shipppingStreetError,
-    isValid: shippingStreetError,
+    error: shippingStreetError,
+    isValid: shippingStreetValid,
     value: shippingStreet,
     onBlurHandler: shippingStreetOnBlur,
     onChangeHandler: shippingStreetOnChange,
@@ -146,9 +147,74 @@ const CheckoutCard = () => {
     resetHandler: shippingZipReset,
   } = useValidation((value) => value.trim() !== "");
 
+  let formIsValid = false;
+
+  if (
+    billingCityValid &&
+    billingStateValid &&
+    billingStreetValid &&
+    billingZipValid &&
+    birthValid &&
+    cardValid &&
+    companyValid &&
+    emailValid &&
+    expirationValid &&
+    nameValid &&
+    phoneValid &&
+    shippingCityValid &&
+    shippingStateValid &&
+    shippingStreetValid &&
+    shippingZipValid
+  ) {
+    formIsValid = true;
+  }
+
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(equals, twoDay);
+    const currentDate = DateTime.now().toFormat("yyyy-MM-dd");
+    const general = {
+      birth: birth,
+      email: email,
+      name: name,
+      phone: phone,
+    };
+    const payment = {
+      billing: {
+        city: billingCity,
+        state: billingState,
+        street: billingStreet,
+        zip: billingZip,
+      },
+      card_number: card,
+      card_company: company,
+      card_expiration: expiration,
+    };
+    const shippingInfo = {
+      city: equals ? billingCity : shippingCity,
+      state: equals ? billingState : shippingState,
+      street: equals ? billingStreet : shippingStreet,
+      zip: equals ? billingZip : shippingZip,
+      shipping_type: shipping.id,
+      shipping_date: shipping.date,
+    };
+    console.log(shippingInfo);
+    if (formIsValid) {
+      billingCityReset();
+      billingStateReset();
+      billingStreetReset();
+      billingZipReset();
+      birthReset();
+      cardReset();
+      companyReset();
+      emailReset();
+      expirationReset();
+      nameReset();
+      phoneReset();
+      shippingCityReset();
+      shippingStateReset();
+      shippingStreetReset();
+      shippingZipReset();
+    }
   };
 
   const billingCityClassName = billingCityError && styles.error;
@@ -259,6 +325,7 @@ const CheckoutCard = () => {
           change: shippingZipOnChange,
           value: shippingZip,
         }}
+        equals={equals}
       />
       <InputCheckBox id={"equals"} check={equals} setCheck={setEquals}>
         Same as billing
@@ -286,14 +353,7 @@ const CheckoutCard = () => {
           value: expiration,
         }}
       />
-      <Shipping
-        value={twoDay}
-        setValue={setTwoDay}
-        value2={fiveDay}
-        setValue2={setFiveDay}
-        value3={free}
-        setValue3={setFree}
-      />
+      <Shipping setValue={setShipping} />
       <div className={styles.btn_wrapper}>
         <Button background={"success"}>Finish Order</Button>
       </div>

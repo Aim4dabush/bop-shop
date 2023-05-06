@@ -4,5 +4,11 @@
   .checkbox_wrapper {
     display: flex;
     justify-content: space-around;
+
+    .checkbox_group_control {
+      align-items: flex-start;
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
