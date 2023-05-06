@@ -8,13 +8,14 @@ import { stateOptions } from "../../../../utils/options-data";
 //styles
 import styles from "./ShippingAddress.module.scss";
 
-const ShippingAddress = ({ city, state, street, zip }) => {
+const ShippingAddress = ({ city, equals, state, street, zip }) => {
   return (
     <div className={styles.shipping_address}>
       <h3>Shipping Address</h3>
       <div className={styles.row}>
         <Input
           classStyle={street.shippingStreetClassName}
+          disable={equals}
           error={street.shippingStreetError}
           id={"shipping_street"}
           message={"Please fill out street"}
@@ -30,6 +31,7 @@ const ShippingAddress = ({ city, state, street, zip }) => {
       <div className={styles.row}>
         <Input
           classStyle={city.shippingCityClassName}
+          disable={equals}
           error={city.shippingCityError}
           id={"shipping_city"}
           message={"Please enter a city"}
@@ -42,6 +44,7 @@ const ShippingAddress = ({ city, state, street, zip }) => {
         </Input>
         <InputSelect
           classStyle={state.shippingStateClassName}
+          disable={equals}
           error={state.shippingStateError}
           id={"shipping_state"}
           message={"Please select a state"}
@@ -55,6 +58,7 @@ const ShippingAddress = ({ city, state, street, zip }) => {
         </InputSelect>
         <Input
           classStyle={zip.shippingZipClassName}
+          disable={equals}
           error={zip.shippingZipError}
           id={"shipping_zip"}
           message={"Please enter a zip code"}
