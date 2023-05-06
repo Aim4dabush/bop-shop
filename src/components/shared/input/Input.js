@@ -11,6 +11,7 @@ const Input = ({
   message,
   onBlurHandler,
   onChangeHandler,
+  padding,
   stretch,
   type,
   value,
@@ -19,7 +20,7 @@ const Input = ({
     <div
       className={`${styles.inputControl} ${stretch && styles.stretch} ${
         type === "checkbox" && styles.checkbox
-      }`}
+      } ${padding && styles.padding}`}
     >
       <label htmlFor={id}>{children}</label>
       <input

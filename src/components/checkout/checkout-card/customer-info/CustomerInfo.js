@@ -52,6 +52,7 @@ const CustomerInfo = ({
           message={"Please enter a value email"}
           onBlurHandler={emailOnBlur}
           onChangeHandler={emailOnChange}
+          stretch={true}
           type={"email"}
           value={email}
         >
@@ -64,6 +65,8 @@ const CustomerInfo = ({
           message={"Please enter a valid phone number"}
           onBlurHandler={phoneOnBlur}
           onChangeHandler={phoneOnChange}
+          padding={true}
+          stretch={true}
           type={"number"}
           value={phone}
         >
@@ -76,6 +79,7 @@ const CustomerInfo = ({
           message={"Please select a date"}
           onBlurHandler={birthOnBlur}
           onChangeHandler={birthOnChange}
+          stretch={true}
           type={"date"}
           value={birth}
         >
