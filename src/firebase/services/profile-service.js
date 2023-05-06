@@ -13,7 +13,6 @@ export const getUserProfile = (user) => {
     try {
       onValue(profileRef, (results) => {
         if (results.val() === null) {
-          console.log("No data found");
           return;
         }
 

@@ -25,7 +25,6 @@ export const registerUser = (email, name, password) => {
         email,
         password
       );
-      console.log(result);
       if (!result) {
         throw new Error("Unable to get credentials");
       }

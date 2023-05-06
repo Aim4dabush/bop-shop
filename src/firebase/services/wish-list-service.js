@@ -105,7 +105,6 @@ export const deleteItem = (id) => {
 
       cart = result.val().cart;
       const newCart = cart.reduce((arr, item) => {
-        console.log(typeof item.id, typeof id);
         if (item.id === id) {
           return [...arr];
         } else {

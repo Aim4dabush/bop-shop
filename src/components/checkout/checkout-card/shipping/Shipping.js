@@ -50,7 +50,6 @@ const Shipping = ({ setValue }) => {
         return [...arr, item];
       }
     }, []);
-    console.log(newArr);
     return newArr;
   };
 
