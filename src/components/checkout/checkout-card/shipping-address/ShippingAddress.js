@@ -8,64 +8,86 @@ import { stateOptions } from "../../../../utils/options-data";
 //styles
 import styles from "./ShippingAddress.module.scss";
 
-const ShippingAddress = ({ city, equals, state, street, zip }) => {
+const ShippingAddress = ({
+  shippingCity,
+  shippingCityClassName,
+  shippingCityError,
+  shippingCityOnBlur,
+  shippingCityOnChange,
+  equals,
+  shippingState,
+  shippingStateClassName,
+  shippingStateError,
+  shippingStateOnBlur,
+  shippingStateOnChange,
+  shippingStreet,
+  shippingStreetClassName,
+  shippingStreetError,
+  shippingStreetOnBlur,
+  shippingStreetOnChange,
+  shippingZip,
+  shippingZipClassName,
+  shippingZipError,
+  shippingZipOnBlur,
+  shippingZipOnChange,
+}) => {
   return (
     <div className={styles.shipping_address}>
       <h3>Shipping Address</h3>
       <div className={styles.row}>
         <Input
-          classStyle={street.shippingStreetClassName}
+          classStyle={shippingStreetClassName}
           disable={equals}
-          error={street.shippingStreetError}
+          error={shippingStreetError}
           id={"shipping_street"}
           message={"Please fill out street"}
-          onBlurHandler={street.shippingStreetOnBlur}
-          onChangeHandler={street.shippingStreetOnChange}
+          onBlurHandler={shippingStreetOnBlur}
+          onChangeHandler={shippingStreetOnChange}
           stretch={true}
           type={"text"}
-          value={street.shippingStreet}
+          value={shippingStreet}
         >
           Street
         </Input>
       </div>
       <div className={styles.row}>
         <Input
-          classStyle={city.shippingCityClassName}
+          classStyle={shippingCityClassName}
           disable={equals}
-          error={city.shippingCityError}
+          error={shippingCityError}
           id={"shipping_city"}
           message={"Please enter a city"}
-          onBlurHandler={city.shippingCityOnBlur}
-          onChangeHandler={city.shippingCityOnChange}
+          onBlurHandler={shippingCityOnBlur}
+          onChangeHandler={shippingCityOnChange}
           type={"text"}
-          value={city.shippingCity}
+          value={shippingCity}
         >
           City
         </Input>
         <InputSelect
-          classStyle={state.shippingStateClassName}
+          classStyle={shippingStateClassName}
           disable={equals}
-          error={state.shippingStateError}
+          error={shippingStateError}
           id={"shipping_state"}
           message={"Please select a state"}
-          onBlurHandler={state.shippingStateOnBlur}
-          onChangeHandler={state.shippingStateOnChange}
+          onBlurHandler={shippingStateOnBlur}
+          onChangeHandler={shippingStateOnChange}
           selectOptions={stateOptions}
           spaceLeft={true}
-          value={state.shippingState}
+          value={shippingState}
         >
           State
         </InputSelect>
         <Input
-          classStyle={zip.shippingZipClassName}
+          classStyle={shippingZipClassName}
           disable={equals}
-          error={zip.shippingZipError}
+          error={shippingZipError}
           id={"shipping_zip"}
           message={"Please enter a zip code"}
-          onBlurHandler={zip.shippingZipOnBlur}
-          onChangeHandler={zip.shippingZipOnChange}
+          onBlurHandler={shippingZipOnBlur}
+          onChangeHandler={shippingZipOnChange}
           type={"number"}
-          value={zip.shippingZip}
+          value={shippingZip}
         >
           Zip Code
         </Input>

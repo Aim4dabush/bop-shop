@@ -8,60 +8,81 @@ import { stateOptions } from "../../../../utils/options-data";
 //styles
 import styles from "./BillingAddress.module.scss";
 
-const BillingAddress = ({ city, state, street, zip }) => {
+const BillingAddress = ({
+  billingCity,
+  billingCityClassName,
+  billingCityError,
+  billingCityOnBlur,
+  billingCityOnChange,
+  billingState,
+  billingStateClassName,
+  billingStateError,
+  billingStateOnBlur,
+  billingStateOnChange,
+  billingStreet,
+  billingStreetClassName,
+  billingStreetError,
+  billingStreetOnBlur,
+  billingStreetOnChange,
+  billingZip,
+  billingZipClassName,
+  billingZipError,
+  billingZipOnBlur,
+  billingZipOnChange,
+}) => {
   return (
     <div className={styles.billing_address}>
       <h3>Billing Address</h3>
       <div className={styles.row}>
         <Input
-          classStyle={street.billingStreetClassName}
-          error={street.billingStreetError}
+          classStyle={billingStreetClassName}
+          error={billingStreetError}
           id={"billing_street"}
           message={"Please fill out street"}
-          onBlurHandler={street.billingStreetOnBlur}
-          onChangeHandler={street.billingStreetOnChange}
+          onBlurHandler={billingStreetOnBlur}
+          onChangeHandler={billingStreetOnChange}
           stretch={true}
           type={"text"}
-          value={street.billingStreet}
+          value={billingStreet}
         >
           Street
         </Input>
       </div>
       <div className={styles.row}>
         <Input
-          classStyle={city.billingCityClassName}
-          error={city.billingCityError}
+          classStyle={billingCityClassName}
+          error={billingCityError}
           id={"billing_city"}
           message={"Please enter a city"}
-          onBlurHandler={city.billingCityOnBlur}
-          onChangeHandler={city.billingCityOnChange}
+          onBlurHandler={billingCityOnBlur}
+          onChangeHandler={billingCityOnChange}
           type={"text"}
-          value={city.billingCity}
+          value={billingCity}
         >
           City
         </Input>
         <InputSelect
-          classStyle={state.billingStateClassName}
-          error={state.billingStateError}
+          classStyle={billingStateClassName}
+          error={billingStateError}
           id={"billing_state"}
           message={"Please select a state"}
-          onBlurHandler={state.billingStateOnBlur}
-          onChangeHandler={state.billingStateOnChange}
+          onBlurHandler={billingStateOnBlur}
+          onChangeHandler={billingStateOnChange}
           selectOptions={stateOptions}
           spaceLeft={true}
-          value={state.billingState}
+          value={billingState}
         >
           State
         </InputSelect>
         <Input
-          classStyle={zip.billingZipClassName}
-          error={zip.billingZipError}
+          classStyle={billingZipClassName}
+          error={billingZipError}
           id={"billing_zip"}
           message={"Please enter a zip code"}
-          onBlurHandler={zip.billingZipOnBlur}
-          onChangeHandler={zip.billingZipOnChange}
+          onBlurHandler={billingZipOnBlur}
+          onChangeHandler={billingZipOnChange}
           type={"number"}
-          value={zip.billingZip}
+          value={billingZip}
         >
           Zip Code
         </Input>

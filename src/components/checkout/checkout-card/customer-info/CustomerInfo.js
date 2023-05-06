@@ -1,65 +1,86 @@
 //components
 import Input from "../../../shared/input/Input";
-import InputDate from "../../../shared/input-date/InputDate";
 
 //styles
 import styles from "./CustomerInfo.module.scss";
 
-const CustomerInfo = ({ birth, email, name, phone }) => {
+const CustomerInfo = ({
+  birth,
+  birthClassName,
+  birthError,
+  birthOnBlur,
+  birthOnChange,
+  email,
+  emailClassName,
+  emailError,
+  emailOnBlur,
+  emailOnChange,
+  name,
+  nameClassName,
+  nameError,
+  nameOnBlur,
+  nameOnChange,
+  phone,
+  phoneClassName,
+  phoneError,
+  phoneOnBlur,
+  phoneOnChange,
+}) => {
   return (
     <div className={styles.info_section}>
       <h3>Customer Info</h3>
       <div className={`${styles.row}`}>
         <Input
-          classStyle={name.nameClassName}
-          error={name.nameClassError}
+          classStyle={nameClassName}
+          error={nameError}
           id={"name"}
           message={"Please enter a name"}
-          onBlurHandler={name.nameOnBlur}
-          onChangeHandler={name.nameOnChange}
+          onBlurHandler={nameOnBlur}
+          onChangeHandler={nameOnChange}
           stretch={true}
           type={"test"}
-          value={name.name}
+          value={name}
         >
           Name
         </Input>
       </div>
       <div className={styles.row}>
         <Input
-          classStyle={email.emailClassName}
-          error={email.emailError}
+          classStyle={emailClassName}
+          error={emailError}
           id={"email"}
           message={"Please enter a value email"}
-          onBlurHandler={email.emailOnBlur}
-          onChangeHandler={email.emailOnChange}
+          onBlurHandler={emailOnBlur}
+          onChangeHandler={emailOnChange}
           type={"email"}
-          value={email.email}
+          value={email}
         >
           Email
         </Input>
         <Input
-          classStyle={phone.phoneClassName}
-          error={phone.phoneError}
+          classStyle={phoneClassName}
+          error={phoneError}
           id={"phone"}
           message={"Please enter a valid phone number"}
-          onBlurHandler={phone.phoneOnBlur}
-          onChangeHandler={phone.phoneOnChange}
+          onBlurHandler={phoneOnBlur}
+          onChangeHandler={phoneOnChange}
           type={"number"}
-          value={phone.phone}
+          value={phone}
         >
           Phone
         </Input>
-        <InputDate
-          classStyle={birth.birthClassName}
-          error={birth.birthError}
+        <Input
+          classStyle={birthClassName}
+          error={birthError}
           id={"birth"}
           message={"Please select a date"}
-          onBlurHandler={birth.birthOnBlur}
-          onChangeHandler={birth.birthOnChange}
-          value={birth.birth}
+          onBlurHandler={birthOnBlur}
+          onChangeHandler={birthOnChange}
+          type={"date"}
+          value={birth}
         >
           Birthday
-        </InputDate>
+        </Input>
       </div>
     </div>
   );

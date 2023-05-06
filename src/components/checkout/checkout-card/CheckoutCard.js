@@ -4,7 +4,7 @@ import { useState } from "react";
 import BillingAddress from "./billing-address/BillingAddress";
 import Button from "../../shared/button/Button";
 import CustomerInfo from "./customer-info/CustomerInfo";
-import InputCheckBox from "../../shared/input-checkbox/InputCheckBox";
+import Input from "../../shared/input/Input";
 import PaymentInfo from "./payment-info/PaymentInfo";
 import Shipping from "./shipping/Shipping";
 import ShippingAddress from "./shipping-address/ShippingAddress";
@@ -16,16 +16,19 @@ import useValidation from "../../../hooks/useValidation";
 import { DateTime } from "luxon";
 
 //redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+//string generator
+import randomstring from "randomstring";
 
 //styles
 import styles from "./CheckoutCard.module.scss";
 
 const CheckoutCard = () => {
   const dispatch = useDispatch();
+  const shoppingCart = useSelector((state) => state.cart.shopCart);
   const [equals, setEquals] = useState(true);
   const [shipping, setShipping] = useState();
-
   const {
     error: billingCityError,
     isValid: billingCityValid,
@@ -57,7 +60,7 @@ const CheckoutCard = () => {
     onBlurHandler: billingZipOnBlur,
     onChangeHandler: billingZipOnChange,
     resetHandler: billingZipReset,
-  } = useValidation((value) => value.trim() !== "");
+  } = useValidation((value) => value.trim() !== "" && value.length === 5);
   const {
     error: birthError,
     isValid: birthValid,
@@ -73,7 +76,7 @@ const CheckoutCard = () => {
     onBlurHandler: cardOnBlur,
     onChangeHandler: cardOnChange,
     resetHandler: cardReset,
-  } = useValidation((value) => value.trim() !== "");
+  } = useValidation((value) => value.trim() !== "" && value.length === 16);
   const {
     error: companyError,
     isValid: companyValid,
@@ -113,7 +116,7 @@ const CheckoutCard = () => {
     onBlurHandler: phoneOnBlur,
     onChangeHandler: phoneOnChange,
     resetHandler: phoneReset,
-  } = useValidation((value) => value.trim() !== "");
+  } = useValidation((value) => value.trim() !== "" && value.length >= 10);
   const {
     error: shippingCityError,
     isValid: shippingCityValid,
@@ -171,9 +174,8 @@ const CheckoutCard = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const currentDate = DateTime.now().toFormat("yyyy-MM-dd");
     const general = {
-      birth: birth,
+      birth: DateTime.fromISO(birth).toFormat("MM-dd-yyyy"),
       email: email,
       name: name,
       phone: phone,
@@ -194,10 +196,18 @@ const CheckoutCard = () => {
       state: equals ? billingState : shippingState,
       street: equals ? billingStreet : shippingStreet,
       zip: equals ? billingZip : shippingZip,
-      shipping_type: shipping.id,
-      shipping_date: shipping.date,
     };
-    console.log(shippingInfo);
+    const order = {
+      shipping_type: shipping.id,
+      arrival_date: shipping.date,
+      products: shoppingCart,
+      order_date: DateTime.now().toFormat("MM-dd-yyyy"),
+      receipt: randomstring.generate(),
+    };
+    console.log("general", general);
+    console.log("order", order);
+    console.log("payment", payment);
+    console.log("shipping info", shippingInfo);
     if (formIsValid) {
       billingCityReset();
       billingStateReset();
@@ -215,6 +225,10 @@ const CheckoutCard = () => {
       shippingStreetReset();
       shippingZipReset();
     }
+  };
+
+  const equalsHandler = (e) => {
+    setEquals(e.target.checked);
   };
 
   const billingCityClassName = billingCityError && styles.error;
@@ -237,121 +251,97 @@ const CheckoutCard = () => {
     <form className={styles.container} onSubmit={submitHandler}>
       <h1 className={styles.form_title}>Order Form</h1>
       <CustomerInfo
-        birth={{
-          class: birthClassName,
-          error: birthError,
-          blur: birthOnBlur,
-          change: birthOnChange,
-          value: birth,
-        }}
-        email={{
-          class: emailClassName,
-          error: emailError,
-          blur: emailOnBlur,
-          change: emailOnChange,
-          value: email,
-        }}
-        name={{
-          class: nameClassName,
-          error: nameError,
-          blur: nameOnBlur,
-          change: nameOnChange,
-          value: name,
-        }}
-        phone={{
-          class: phoneClassName,
-          error: phoneError,
-          blur: phoneOnBlur,
-          change: phoneOnChange,
-          value: phone,
-        }}
+        birth={birth}
+        birthClassName={birthClassName}
+        birthError={birthError}
+        birthOnBlur={birthOnBlur}
+        birthOnChange={birthOnChange}
+        email={email}
+        emailClassName={emailClassName}
+        emailError={emailError}
+        emailOnBlur={emailOnBlur}
+        emailOnChange={emailOnChange}
+        name={name}
+        nameClassName={nameClassName}
+        nameError={nameError}
+        nameOnBlur={nameOnBlur}
+        nameOnChange={nameOnChange}
+        phone={phone}
+        phoneClassName={phoneClassName}
+        phoneError={phoneError}
+        phoneOnBlur={phoneOnBlur}
+        phoneOnChange={phoneOnChange}
       />
       <BillingAddress
-        city={{
-          class: billingCityClassName,
-          error: billingCityError,
-          blur: billingCityOnBlur,
-          change: billingCityOnChange,
-          value: billingCity,
-        }}
-        state={{
-          class: billingStateClassName,
-          error: billingStateError,
-          blur: billingStateOnBlur,
-          change: billingStateOnChange,
-          value: billingState,
-        }}
-        street={{
-          class: billingStreetClassName,
-          error: billingStreetError,
-          blur: billingStreetOnBlur,
-          change: billingStreetOnChange,
-          value: billingStreet,
-        }}
-        zip={{
-          class: billingZipClassName,
-          error: billingZipError,
-          blur: billingZipOnBlur,
-          change: billingZipOnChange,
-          value: billingZip,
-        }}
+        billingCity={billingCity}
+        billingCityClassName={billingCityClassName}
+        billingCityError={billingCityError}
+        billingCityOnBlur={billingCityOnBlur}
+        billingCityOnChange={billingCityOnChange}
+        billingState={billingState}
+        billingStateClassName={billingCityClassName}
+        billingStateError={billingStateError}
+        billingStateOnBlur={billingStateOnBlur}
+        billingStateOnChange={billingStateOnChange}
+        billingStreet={billingStreet}
+        billingStreetClassName={billingStreetClassName}
+        billingStreetError={billingStreetError}
+        billingStreetOnBlur={billingStreetOnBlur}
+        billingStreetOnChange={billingStreetOnChange}
+        billingZip={billingZip}
+        billingZipClassName={billingZipClassName}
+        billingZipError={billingZipError}
+        billingZipOnBlur={billingZipOnBlur}
+        billingZipOnChange={billingZipOnChange}
       />
       <ShippingAddress
-        city={{
-          class: shippingCityClassName,
-          error: shippingCityError,
-          blur: shippingCityOnBlur,
-          change: shippingCityOnChange,
-          value: shippingCity,
-        }}
-        state={{
-          class: shippingStateClassName,
-          error: shippingStateError,
-          blur: shippingStateOnBlur,
-          change: shippingStateOnChange,
-          value: shippingState,
-        }}
-        street={{
-          class: shippingStreetClassName,
-          error: shippingStreetError,
-          blur: shippingStreetOnBlur,
-          change: shippingStreetOnChange,
-          value: shippingStreet,
-        }}
-        zip={{
-          class: shippingZipClassName,
-          error: shippingZipError,
-          blur: shippingZipOnBlur,
-          change: shippingZipOnChange,
-          value: shippingZip,
-        }}
+        shippingCity={shippingCity}
+        shippingCityClassName={shippingCityClassName}
+        shippingCityError={shippingCityError}
+        shippingCityOnBlur={shippingCityOnBlur}
+        shippingCityOnChange={shippingCityOnChange}
+        shippingState={shippingState}
+        shippingStateClassName={shippingStateClassName}
+        shippingStateError={shippingStateError}
+        shippingStateOnBlur={shippingStateOnBlur}
+        shippingStateOnChange={shippingStateOnChange}
+        shippingStreet={shippingStreet}
+        shippingStreetClassName={shippingStreetClassName}
+        shippingStreetError={shippingStreetError}
+        shippingStreetOnBlur={shippingStreetOnBlur}
+        shippingStreetOnChange={shippingStreetOnChange}
+        shippingZip={shippingZip}
+        shippingZipClassName={shippingZipClassName}
+        shippingZipError={shippingZipError}
+        shippingZipOnBlur={shippingZipOnBlur}
+        shippingZipOnChange={shippingZipOnChange}
         equals={equals}
       />
-      <InputCheckBox id={"equals"} check={equals} setCheck={setEquals}>
+      <Input
+        checked={equals}
+        id={"equals"}
+        type={"checkbox"}
+        value={equals}
+        onChangeHandler={equalsHandler}
+      >
         Same as billing
-      </InputCheckBox>
+      </Input>
       <PaymentInfo
-        card={{
-          class: cardClassName,
-          error: cardError,
-          blur: cardOnBlur,
-          change: cardOnChange,
-          value: card,
-        }}
-        company={{
-          class: companyClassName,
-          error: companyError,
-          blur: companyOnBlur,
-          change: companyOnChange,
-          value: company,
-        }}
-        expiration={{
-          class: expirationClassName,
-          error: expirationError,
-          blur: expirationOnBlur,
-          change: expirationOnChange,
-          value: expiration,
-        }}
+        card={card}
+        cardClassName={cardClassName}
+        cardError={cardError}
+        cardOnBlur={cardOnBlur}
+        cardOnChange={cardOnChange}
+        company={company}
+        companyClassName={companyClassName}
+        companyError={companyError}
+        companyOnBlur={companyOnBlur}
+        companyOnChange={companyOnChange}
+        expiration={expiration}
+        expirationClassName={expirationClassName}
+        expirationError={expirationError}
+        expirationOnBlur={expirationOnBlur}
+        expirationOnChange={expirationOnChange}
       />
       <Shipping setValue={setShipping} />
       <div className={styles.btn_wrapper}>
