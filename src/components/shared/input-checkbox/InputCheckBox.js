@@ -1,7 +1,12 @@
+import { useState } from "react";
+
 //styles
 import styles from "./InputCheckBox.module.scss";
 
-const InputCheckBox = ({ check, checkHandler, children, id }) => {
+const InputCheckBox = ({ children, id, check, setCheck }) => {
+  const checkHandler = (e) => {
+    setCheck((prev) => (prev = e.target.checked));
+  };
   return (
     <div className={styles.checkbox_control}>
       <label htmlFor={id}>{children}</label>

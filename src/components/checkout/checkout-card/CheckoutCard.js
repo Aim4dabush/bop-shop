@@ -22,7 +22,9 @@ const CheckoutCard = () => {
   const dispatch = useDispatch();
   const [equals, setEquals] = useState(true);
   const [twoDay, setTwoDay] = useState(false);
-  console.log(twoDay);
+  const [fiveDay, setFiveDay] = useState(false);
+  const [free, setFree] = useState(true);
+
   const {
     error: billingCityError,
     isValid: billingCityValid,
@@ -146,10 +148,7 @@ const CheckoutCard = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-  };
-
-  const equalsHandler = (e) => {
-    setEquals(e.target.checked);
+    console.log(equals, twoDay);
   };
 
   const billingCityClassName = billingCityError && styles.error;
@@ -261,7 +260,7 @@ const CheckoutCard = () => {
           value: shippingZip,
         }}
       />
-      <InputCheckBox id={"equals"} check={equals} checkHandler={equalsHandler}>
+      <InputCheckBox id={"equals"} check={equals} setCheck={setEquals}>
         Same as billing
       </InputCheckBox>
       <PaymentInfo
@@ -287,9 +286,16 @@ const CheckoutCard = () => {
           value: expiration,
         }}
       />
-      <Shipping twoDay={twoDay} setTwoDay={setTwoDay} />
+      <Shipping
+        value={twoDay}
+        setValue={setTwoDay}
+        value2={fiveDay}
+        setValue2={setFiveDay}
+        value3={free}
+        setValue3={setFree}
+      />
       <div className={styles.btn_wrapper}>
-        <Button background={"success"}>Submit</Button>
+        <Button background={"success"}>Finish Order</Button>
       </div>
     </form>
   );
