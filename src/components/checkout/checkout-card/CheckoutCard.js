@@ -124,7 +124,7 @@ const CheckoutCard = () => {
     onBlurHandler: shippingCityOnBlur,
     onChangeHandler: shippingCityOnChange,
     resetHandler: shippingCityReset,
-  } = useValidation((value) => value.trim() !== "");
+  } = useValidation((value) => value.trim() !== "" || equals);
   const {
     error: shippingStateError,
     isValid: shippingStateValid,
@@ -132,7 +132,7 @@ const CheckoutCard = () => {
     onBlurHandler: shippingStateOnBlur,
     onChangeHandler: shippingStateOnChange,
     resetHandler: shippingStateReset,
-  } = useValidation((value) => value.trim() !== "");
+  } = useValidation((value) => value.trim() !== "" || equals);
   const {
     error: shippingStreetError,
     isValid: shippingStreetValid,
@@ -140,7 +140,7 @@ const CheckoutCard = () => {
     onBlurHandler: shippingStreetOnBlur,
     onChangeHandler: shippingStreetOnChange,
     resetHandler: shippingStreetReset,
-  } = useValidation((value) => value.trim() !== "");
+  } = useValidation((value) => value.trim() !== "" || equals);
   const {
     error: shippingZipError,
     isValid: shippingZipValid,
@@ -148,7 +148,7 @@ const CheckoutCard = () => {
     onBlurHandler: shippingZipOnBlur,
     onChangeHandler: shippingZipOnChange,
     resetHandler: shippingZipReset,
-  } = useValidation((value) => value.trim() !== "");
+  } = useValidation((value) => value.trim() !== "" || equals);
 
   let formIsValid = false;
 
@@ -174,13 +174,24 @@ const CheckoutCard = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const general = {
+    let general = {};
+    let order = {};
+    let payment = {};
+    let shippingInfo = {};
+    const receipt = randomstring.generate();
+    general = {
       birth: DateTime.fromISO(birth).toFormat("MM-dd-yyyy"),
       email: email,
       name: name,
       phone: phone,
     };
-    const payment = {
+    order = {
+      shipping_type: shipping.id,
+      arrival_date: shipping.date,
+      products: shoppingCart,
+      order_date: DateTime.now().toFormat("MM-dd-yyyy"),
+    };
+    payment = {
       billing: {
         city: billingCity,
         state: billingState,
@@ -191,22 +202,16 @@ const CheckoutCard = () => {
       card_company: company,
       card_expiration: expiration,
     };
-    const shippingInfo = {
+    shippingInfo = {
       city: equals ? billingCity : shippingCity,
       state: equals ? billingState : shippingState,
       street: equals ? billingStreet : shippingStreet,
       zip: equals ? billingZip : shippingZip,
     };
-    const order = {
-      shipping_type: shipping.id,
-      arrival_date: shipping.date,
-      products: shoppingCart,
-      order_date: DateTime.now().toFormat("MM-dd-yyyy"),
-      receipt: randomstring.generate(),
-    };
     console.log("general", general);
     console.log("order", order);
     console.log("payment", payment);
+    console.log("receipt", receipt);
     console.log("shipping info", shippingInfo);
     if (formIsValid) {
       billingCityReset();
@@ -279,7 +284,7 @@ const CheckoutCard = () => {
         billingCityOnBlur={billingCityOnBlur}
         billingCityOnChange={billingCityOnChange}
         billingState={billingState}
-        billingStateClassName={billingCityClassName}
+        billingStateClassName={billingStateClassName}
         billingStateError={billingStateError}
         billingStateOnBlur={billingStateOnBlur}
         billingStateOnChange={billingStateOnChange}
