@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 
+//components
+import Input from "../../../shared/input/Input";
+
 //luxon
 import { DateTime } from "luxon";
 
@@ -47,7 +50,7 @@ const Shipping = ({ setValue }) => {
         return [...arr, item];
       }
     }, []);
-
+    console.log(newArr);
     return newArr;
   };
 
@@ -66,15 +69,15 @@ const Shipping = ({ setValue }) => {
       <div className={styles.checkbox_wrapper}>
         {boxes.map((box) => {
           return (
-            <div className={styles.checkbox_group_control} key={box.id}>
-              <label htmlFor={box.id}>{box.title}</label>
-              <input
-                id={box.id}
-                type="checkbox"
-                checked={box.checked}
-                onChange={checkboxGroupHandler}
-              />
-            </div>
+            <Input
+              checked={box.checked}
+              id={box.id}
+              key={box.id}
+              type={"checkbox"}
+              onChangeHandler={checkboxGroupHandler}
+            >
+              {box.title}
+            </Input>
           );
         })}
       </div>

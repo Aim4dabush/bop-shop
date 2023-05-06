@@ -2,6 +2,7 @@
 import styles from "./Input.module.scss";
 
 const Input = ({
+  checked,
   children,
   classStyle,
   disable,
@@ -15,16 +16,21 @@ const Input = ({
   value,
 }) => {
   return (
-    <div className={`${styles.inputControl} ${stretch && styles.stretch}`}>
+    <div
+      className={`${styles.inputControl} ${stretch && styles.stretch} ${
+        type === "checkbox" && styles.checkbox
+      }`}
+    >
       <label htmlFor={id}>{children}</label>
       <input
+        checked={checked}
         className={`${styles.input} ${classStyle}`}
+        disabled={disable}
         id={id}
         type={type}
         value={value}
         onBlur={onBlurHandler}
         onChange={onChangeHandler}
-        disabled={disable}
       />
       {error && <p className={styles.errorMessage}>{message}</p>}
     </div>
