@@ -18,7 +18,6 @@ export const getUserProfile = (data) => {
         }
 
         const data = results.val().info;
-        console.log(data);
         dispatch(cartActions.setUserProfile(data));
       });
     } catch (err) {
