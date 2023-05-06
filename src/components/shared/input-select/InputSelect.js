@@ -6,6 +6,7 @@ import styles from "./InputSelect.module.scss";
 const InputSelect = ({
   children,
   classStyle,
+  disable,
   error,
   id,
   message,
@@ -28,6 +29,7 @@ const InputSelect = ({
         onBlur={onBlurHandler}
         onChange={onChangeHandler}
         options={selectOptions}
+        isDisabled={disable}
       />
       {error && <p className={styles.error_message}>{message}</p>}
     </div>

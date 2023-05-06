@@ -4,6 +4,7 @@ import styles from "./Input.module.scss";
 const Input = ({
   children,
   classStyle,
+  disable,
   error,
   id,
   message,
@@ -23,6 +24,7 @@ const Input = ({
         value={value}
         onBlur={onBlurHandler}
         onChange={onChangeHandler}
+        disabled={disable}
       />
       {error && <p className={styles.errorMessage}>{message}</p>}
     </div>
