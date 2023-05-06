@@ -43,7 +43,6 @@ const CheckoutList = () => {
       </table>
       <div className={styles.total}>
         <p>Total: ${total}</p>
-        <Button background={"success"}>Finish Order</Button>
       </div>
     </div>
   );
