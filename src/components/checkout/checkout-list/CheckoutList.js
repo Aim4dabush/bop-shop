@@ -1,17 +1,16 @@
-//components
-import Button from "../../shared/button/Button";
+//redux
+import { useSelector } from "react-redux";
 
 //styles
 import styles from "./CheckoutList.module.scss";
 
 const CheckoutList = () => {
-  const product = {
-    title: "test",
-    quantity: 1,
-    price: 2,
-    subtotal: 2,
-  };
-  const total = 2;
+  const shoppingCart = useSelector((state) => state.cart.shopCart);
+  const total = shoppingCart.reduce((arr, item) => {
+    arr = arr + item.price;
+    return arr;
+  }, 0);
+
   return (
     <div className={styles.list}>
       <h1>Cart List</h1>
@@ -25,12 +24,16 @@ const CheckoutList = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th>{product.title}</th>
-            <th>{product.quantity}</th>
-            <th>${product.price}</th>
-            <th>${product.subtotal}</th>
-          </tr>
+          {shoppingCart.map((item) => {
+            return (
+              <tr>
+                <th>{item.title}</th>
+                <th>{item.quantity}</th>
+                <th>${item.price}</th>
+                <th>${item.subtotal}</th>
+              </tr>
+            );
+          })}
         </tbody>
         <tfoot>
           <tr>
