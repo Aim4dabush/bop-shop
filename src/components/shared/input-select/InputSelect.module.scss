@@ -1,0 +1,19 @@
+@import "../../../SassVariables.scss";
+
+.select_control {
+  padding-right: 1rem;
+  width: 100%;
+  .error_message {
+    color: $error;
+    font-size: 14px;
+  }
+
+  .select {
+    border: 1px solid $secondary;
+    border-radius: 3px;
+  }
+}
+
+.space_left {
+  padding-left: 1rem;
+}
