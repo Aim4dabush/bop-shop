@@ -7,9 +7,9 @@ import { realtimeDB } from "../firebaseConfig";
 //realtime database
 import { onValue, ref, set } from "firebase/database";
 
-export const getUserProfile = (data) => {
+export const getUserProfile = (user) => {
   return (dispatch) => {
-    const profileRef = ref(realtimeDB, `users/${data.id}/profile`);
+    const profileRef = ref(realtimeDB, `users/${user.id}/profile`);
     try {
       onValue(profileRef, (results) => {
         if (results.val() === null) {
