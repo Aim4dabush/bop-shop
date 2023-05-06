@@ -1,6 +1,7 @@
 import { authActions } from "../../redux/slices/authSlice";
 import { cartActions } from "../../redux/slices/cartSlice";
 import { notificationActions } from "../../redux/slices/notificationSlice";
+import { profileActions } from "../../redux/slices/profileSlice";
 
 //firebase
 import { auth } from "../firebaseConfig";
@@ -30,7 +31,6 @@ export const registerUser = (email, name, password) => {
       }
 
       const user = result.user;
-      console.log(user);
       updateProfile(user, { displayName: name });
       dispatch(
         postUserProfile({
@@ -110,7 +110,7 @@ export const logout = () => {
       dispatch(authActions.setUserReset());
       dispatch(cartActions.setShopCartReset());
       dispatch(cartActions.setWishCartReset());
-      dispatch(cartActions.setUserProfileReset());
+      dispatch(profileActions.setProfileReset());
       localStorage.clear();
       dispatch(
         notificationActions.setInfo({

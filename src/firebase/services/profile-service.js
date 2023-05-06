@@ -1,5 +1,5 @@
-import { cartActions } from "../../redux/slices/cartSlice";
 import { notificationActions } from "../../redux/slices/notificationSlice";
+import { profileActions } from "../../redux/slices/profileSlice";
 
 //firebase
 import { realtimeDB } from "../firebaseConfig";
@@ -18,7 +18,7 @@ export const getUserProfile = (user) => {
         }
 
         const data = results.val().info;
-        dispatch(cartActions.setUserProfile(data));
+        dispatch(profileActions.setProfile(data));
       });
     } catch (err) {
       dispatch(

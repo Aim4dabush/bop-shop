@@ -4,7 +4,6 @@ const cartSlice = createSlice({
   name: "cart",
   initialState: {
     shopCart: [],
-    userProfile: null,
     wishCart: [],
   },
   reducers: {
@@ -14,13 +13,6 @@ const cartSlice = createSlice({
     },
     setShopCartReset(state) {
       state.shopCart = [];
-    },
-    setUserProfile(state, action) {
-      state.userProfile = null;
-      state.userProfile = action.payload;
-    },
-    setUserProfileReset(state) {
-      state.userProfile = null;
     },
     setWishCart(state, action) {
       state.wishCart = [];
