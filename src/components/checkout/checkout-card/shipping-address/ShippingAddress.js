@@ -1,6 +1,6 @@
 //components
 import Input from "../../../shared/input/Input";
-import InputSelect from "../../../shared/input-select/InputSelect";
+import Select from "../../../shared/select/Select";
 
 //data
 import { stateOptions } from "../../../../utils/options-data";
@@ -64,7 +64,7 @@ const ShippingAddress = ({
         >
           City
         </Input>
-        <InputSelect
+        <Select
           classStyle={shippingStateClassName}
           disable={equals}
           error={shippingStateError}
@@ -73,11 +73,11 @@ const ShippingAddress = ({
           onBlurHandler={shippingStateOnBlur}
           onChangeHandler={shippingStateOnChange}
           selectOptions={stateOptions}
-          spaceLeft={true}
+          padding={true}
           value={shippingState}
         >
           State
-        </InputSelect>
+        </Select>
         <Input
           classStyle={shippingZipClassName}
           disable={equals}

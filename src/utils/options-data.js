@@ -1,5 +1,9 @@
 export const companyOptions = [
   {
+    value: "",
+    label: "Select...",
+  },
+  {
     value: "mastercard",
     label: "Mastercard",
   },
@@ -18,6 +22,10 @@ export const companyOptions = [
 ];
 
 export const stateOptions = [
+  {
+    value: "",
+    label: "Select...",
+  },
   {
     value: "AL",
     label: "Alabama",

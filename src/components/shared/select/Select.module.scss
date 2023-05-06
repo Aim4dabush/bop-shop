@@ -1,8 +1,10 @@
 @import "../../../SassVariables.scss";
 
 .select_control {
-  padding-right: 1rem;
+  display: flex;
+  flex-direction: column;
   width: 100%;
+
   .error_message {
     color: $error;
     font-size: 14px;
@@ -11,9 +13,10 @@
   .select {
     border: 1px solid $secondary;
     border-radius: 3px;
+    font-size: 20px;
   }
 }
 
-.space_left {
-  padding-left: 1rem;
+.padding {
+  padding: 0 0.5rem;
 }

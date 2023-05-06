@@ -1,6 +1,6 @@
 //components
 import Input from "../../../shared/input/Input";
-import InputSelect from "../../../shared/input-select/InputSelect";
+import Select from "../../../shared/select/Select";
 
 //data
 import { stateOptions } from "../../../../utils/options-data";
@@ -61,7 +61,7 @@ const BillingAddress = ({
         >
           City
         </Input>
-        <InputSelect
+        <Select
           classStyle={billingStateClassName}
           error={billingStateError}
           id={"billing_state"}
@@ -69,11 +69,11 @@ const BillingAddress = ({
           onBlurHandler={billingStateOnBlur}
           onChangeHandler={billingStateOnChange}
           selectOptions={stateOptions}
-          spaceLeft={true}
+          padding={true}
           value={billingState}
         >
           State
-        </InputSelect>
+        </Select>
         <Input
           classStyle={billingZipClassName}
           error={billingZipError}

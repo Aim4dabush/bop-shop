@@ -1,6 +1,6 @@
 //components
 import Input from "../../../shared/input/Input";
-import InputSelect from "../../../shared/input-select/InputSelect";
+import Select from "../../../shared/select/Select";
 
 //data
 import { companyOptions } from "../../../../utils/options-data";
@@ -44,7 +44,7 @@ const PaymentInfo = ({
         </Input>
       </div>
       <div className={styles.last_row}>
-        <InputSelect
+        <Select
           classStyle={companyClassName}
           error={companyError}
           id={"company"}
@@ -52,10 +52,11 @@ const PaymentInfo = ({
           onBlurHandler={companyOnBlur}
           onChangeHandler={companyOnChange}
           selectOptions={companyOptions}
+          type={"select"}
           value={company}
         >
           Company
-        </InputSelect>
+        </Select>
         <Input
           classStyle={expirationClassName}
           error={expirationError}
@@ -63,6 +64,7 @@ const PaymentInfo = ({
           message={"Please select a date"}
           onBlurHandler={expirationOnBlur}
           onChangeHandler={expirationOnChange}
+          stretch={true}
           type={"date"}
           value={expiration}
         >
