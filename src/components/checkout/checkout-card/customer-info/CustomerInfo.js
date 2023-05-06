@@ -38,7 +38,7 @@ const CustomerInfo = ({
           onBlurHandler={nameOnBlur}
           onChangeHandler={nameOnChange}
           stretch={true}
-          type={"test"}
+          type={"text"}
           value={name}
         >
           Name
