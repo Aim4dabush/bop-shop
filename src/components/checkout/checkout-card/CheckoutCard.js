@@ -174,16 +174,23 @@ const CheckoutCard = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    let billing = {};
     let general = {};
     let order = {};
     let payment = {};
     let shippingInfo = {};
     const receipt = randomstring.generate();
+    billing = {
+      city: billingCity,
+      state: billingState,
+      street: billingStreet,
+      zip: billingZip,
+    };
     general = {
       birth: DateTime.fromISO(birth).toFormat("MM-dd-yyyy"),
       email: email,
       name: name,
-      phone: phone,
+      phone,
     };
     order = {
       shipping_type: shipping.id,
@@ -192,12 +199,6 @@ const CheckoutCard = () => {
       order_date: DateTime.now().toFormat("MM-dd-yyyy"),
     };
     payment = {
-      billing: {
-        city: billingCity,
-        state: billingState,
-        street: billingStreet,
-        zip: billingZip,
-      },
       card_number: card,
       card_company: company,
       card_expiration: expiration,
@@ -208,6 +209,7 @@ const CheckoutCard = () => {
       street: equals ? billingStreet : shippingStreet,
       zip: equals ? billingZip : shippingZip,
     };
+    console.log("billing", billing);
     console.log("general", general);
     console.log("order", order);
     console.log("payment", payment);
