@@ -34,14 +34,14 @@ export const getUserProfile = (user) => {
 export const postUserProfile = (data) => {
   return (dispatch) => {
     const profileRef = ref(realtimeDB, `users/${data.id}/profile`);
-    let info = {
+    let general = {
       birth: data.birth ? data.birth : "",
       email: data.email ? data.email : "",
       name: data.name ? data.name : "",
       phone: data.phone ? data.phone : "",
     };
     try {
-      set(profileRef, { info });
+      set(profileRef, { general });
     } catch (err) {
       dispatch(
         notificationActions.setInfo({
