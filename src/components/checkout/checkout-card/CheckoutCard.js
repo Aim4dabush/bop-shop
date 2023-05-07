@@ -179,6 +179,13 @@ const CheckoutCard = () => {
     let order = {};
     let payment = {};
     let shippingInfo = {};
+    const total = shoppingCart.reduce(
+      (arr, item) => {
+        arr = arr + item.price;
+        return arr;
+      },
+      [0]
+    );
     const receipt = randomstring.generate();
     billing = {
       city: billingCity,
@@ -197,6 +204,8 @@ const CheckoutCard = () => {
       arrival_date: shipping.date,
       products: shoppingCart,
       order_date: DateTime.now().toFormat("MM-dd-yyyy"),
+      order_total: total,
+      receipt,
     };
     payment = {
       card_number: card,

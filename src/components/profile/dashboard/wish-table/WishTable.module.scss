@@ -1,0 +1,27 @@
+@import "../../../../SassVariables.scss";
+
+.table_wrapper {
+  border-radius: 8px;
+  box-shadow: 6px 6px 10px $secondary;
+  padding: 1rem;
+  width: 45%;
+
+  .empty {
+    text-align: center;
+  }
+
+  table {
+    width: 100%;
+    th {
+      border: 1px solid $secondary;
+
+      .list_link {
+        color: $secondary;
+
+        &:hover {
+          color: $modal;
+        }
+      }
+    }
+  }
+}
