@@ -1,0 +1,11 @@
+.address_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .row {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-between;
+  }
+}

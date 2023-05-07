@@ -1,0 +1,27 @@
+@import "../../../../SassVariables.scss";
+
+.customer_wrapper {
+  border-radius: 8px;
+  box-shadow: 6px 6px 10px $secondary;
+  padding: 1rem;
+  position: relative;
+  width: 100%;
+
+  .btn_wrapper {
+    left: 0;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    position: absolute;
+    top: 0;
+  }
+
+  .customer_title {
+    text-align: center;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

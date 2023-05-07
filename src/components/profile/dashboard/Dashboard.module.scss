@@ -1,9 +1,18 @@
 .container {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
   padding: 1rem;
 
+  .customer_wrapper {
+    width: 100%;
+  }
+
   .list_wrapper {
+    align-items: center;
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    width: 100%;
   }
 }
