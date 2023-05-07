@@ -26,6 +26,7 @@ import styles from "./CheckoutCard.module.scss";
 
 const CheckoutCard = () => {
   const dispatch = useDispatch();
+  const { profile } = useSelector((state) => state.profile);
   const shoppingCart = useSelector((state) => state.cart.shopCart);
   const [equals, setEquals] = useState(true);
   const [shipping, setShipping] = useState();
@@ -36,7 +37,7 @@ const CheckoutCard = () => {
     onBlurHandler: billingCityOnBlur,
     onChangeHandler: billingCityOnChange,
     resetHandler: billingCityReset,
-  } = useValidation((value) => value.trim() !== "");
+  } = useValidation((value) => value.trim() !== "", "");
   const {
     error: billingStateError,
     isValid: billingStateValid,
@@ -44,7 +45,7 @@ const CheckoutCard = () => {
     onBlurHandler: billingStateOnBlur,
     onChangeHandler: billingStateOnChange,
     resetHandler: billingStateReset,
-  } = useValidation((value) => value.trim() !== "");
+  } = useValidation((value) => value.trim() !== "", "");
   const {
     error: billingStreetError,
     isValid: billingStreetValid,
@@ -52,7 +53,7 @@ const CheckoutCard = () => {
     onBlurHandler: billingStreetOnBlur,
     onChangeHandler: billingStreetOnChange,
     resetHandler: billingStreetReset,
-  } = useValidation((value) => value.trim() !== "");
+  } = useValidation((value) => value.trim() !== "", "");
   const {
     error: billingZipError,
     isValid: billingZipValid,
@@ -60,7 +61,7 @@ const CheckoutCard = () => {
     onBlurHandler: billingZipOnBlur,
     onChangeHandler: billingZipOnChange,
     resetHandler: billingZipReset,
-  } = useValidation((value) => value.trim() !== "" && value.length === 5);
+  } = useValidation((value) => value.trim() !== "" && value.length === 5, "");
   const {
     error: birthError,
     isValid: birthValid,
@@ -68,7 +69,10 @@ const CheckoutCard = () => {
     onBlurHandler: birthOnBlur,
     onChangeHandler: birthOnChange,
     resetHandler: birthReset,
-  } = useValidation((value) => value.trim() !== "");
+  } = useValidation(
+    (value) => value.trim() !== "",
+    profile.birth ? profile.birth : ""
+  );
   const {
     error: cardError,
     isValid: cardValid,
@@ -76,7 +80,7 @@ const CheckoutCard = () => {
     onBlurHandler: cardOnBlur,
     onChangeHandler: cardOnChange,
     resetHandler: cardReset,
-  } = useValidation((value) => value.trim() !== "" && value.length === 16);
+  } = useValidation((value) => value.trim() !== "" && value.length === 16, "");
   const {
     error: companyError,
     isValid: companyValid,
@@ -84,7 +88,7 @@ const CheckoutCard = () => {
     onBlurHandler: companyOnBlur,
     onChangeHandler: companyOnChange,
     resetHandler: companyReset,
-  } = useValidation((value) => value.trim() !== "");
+  } = useValidation((value) => value.trim() !== "", "");
   const {
     error: emailError,
     isValid: emailValid,
@@ -92,7 +96,10 @@ const CheckoutCard = () => {
     onBlurHandler: emailOnBlur,
     onChangeHandler: emailOnChange,
     resetHandler: emailReset,
-  } = useValidation((value) => value.includes("@"));
+  } = useValidation(
+    (value) => value.includes("@"),
+    profile.email ? profile.email : ""
+  );
   const {
     error: expirationError,
     isValid: expirationValid,
@@ -100,7 +107,7 @@ const CheckoutCard = () => {
     onBlurHandler: expirationOnBlur,
     onChangeHandler: expirationOnChange,
     resetHandler: expirationReset,
-  } = useValidation((value) => value.trim() !== "");
+  } = useValidation((value) => value.trim() !== "", "");
   const {
     error: nameError,
     isValid: nameValid,
@@ -108,7 +115,10 @@ const CheckoutCard = () => {
     onBlurHandler: nameOnBlur,
     onChangeHandler: nameOnChange,
     resetHandler: nameReset,
-  } = useValidation((value) => value.trim() !== "");
+  } = useValidation(
+    (value) => value.trim() !== "",
+    profile.name ? profile.name : ""
+  );
   const {
     error: phoneError,
     isValid: phoneValid,
@@ -116,7 +126,10 @@ const CheckoutCard = () => {
     onBlurHandler: phoneOnBlur,
     onChangeHandler: phoneOnChange,
     resetHandler: phoneReset,
-  } = useValidation((value) => value.trim() !== "" && value.length >= 10);
+  } = useValidation(
+    (value) => value.trim() !== "" && value.length >= 10,
+    profile.phone ? profile.phone : ""
+  );
   const {
     error: shippingCityError,
     isValid: shippingCityValid,
@@ -124,7 +137,7 @@ const CheckoutCard = () => {
     onBlurHandler: shippingCityOnBlur,
     onChangeHandler: shippingCityOnChange,
     resetHandler: shippingCityReset,
-  } = useValidation((value) => value.trim() !== "" || equals);
+  } = useValidation((value) => value.trim() !== "" || equals, "");
   const {
     error: shippingStateError,
     isValid: shippingStateValid,
@@ -132,7 +145,7 @@ const CheckoutCard = () => {
     onBlurHandler: shippingStateOnBlur,
     onChangeHandler: shippingStateOnChange,
     resetHandler: shippingStateReset,
-  } = useValidation((value) => value.trim() !== "" || equals);
+  } = useValidation((value) => value.trim() !== "" || equals, "");
   const {
     error: shippingStreetError,
     isValid: shippingStreetValid,
@@ -140,7 +153,7 @@ const CheckoutCard = () => {
     onBlurHandler: shippingStreetOnBlur,
     onChangeHandler: shippingStreetOnChange,
     resetHandler: shippingStreetReset,
-  } = useValidation((value) => value.trim() !== "" || equals);
+  } = useValidation((value) => value.trim() !== "" || equals, "");
   const {
     error: shippingZipError,
     isValid: shippingZipValid,
@@ -148,7 +161,7 @@ const CheckoutCard = () => {
     onBlurHandler: shippingZipOnBlur,
     onChangeHandler: shippingZipOnChange,
     resetHandler: shippingZipReset,
-  } = useValidation((value) => value.trim() !== "" || equals);
+  } = useValidation((value) => value.trim() !== "" || equals, "");
 
   let formIsValid = false;
 
