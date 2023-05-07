@@ -23,7 +23,7 @@ const Registration = () => {
     onBlurHandler: emailOnBlur,
     onChangeHandler: emailOnChange,
     resetHandler: emailReset,
-  } = useValidation((value) => value.includes("@"));
+  } = useValidation((value) => value.includes("@"), "");
   const {
     error: nameError,
     isValid: nameValid,
@@ -31,7 +31,7 @@ const Registration = () => {
     onBlurHandler: nameOnBlur,
     onChangeHandler: nameOnChange,
     resetHandler: nameReset,
-  } = useValidation((value) => value.trim() !== "" && value.length >= 2);
+  } = useValidation((value) => value.trim() !== "" && value.length >= 2, "");
   const {
     error: passwordError,
     isValid: passwordValid,
@@ -39,7 +39,7 @@ const Registration = () => {
     onBlurHandler: passwordOnBlur,
     onChangeHandler: passwordOnChange,
     resetHandler: passwordReset,
-  } = useValidation((value) => value.trim() !== "" && value.length >= 6);
+  } = useValidation((value) => value.trim() !== "" && value.length >= 6, "");
   const {
     error: confirmError,
     isValid: confirmValid,
@@ -47,7 +47,7 @@ const Registration = () => {
     onBlurHandler: confirmOnBlur,
     onChangeHandler: confirmOnChange,
     resetHandler: confirmReset,
-  } = useValidation((value) => value.trim() !== "");
+  } = useValidation((value) => value.trim() !== "", "");
   let formIsValid = false;
 
   if (confirmValid && emailValid && nameValid && passwordValid) {

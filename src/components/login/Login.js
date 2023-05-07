@@ -24,7 +24,7 @@ const Login = () => {
     onBlurHandler: emailOnBlur,
     onChangeHandler: emailOnChange,
     resetHandler: emailReset,
-  } = useValidation((value) => value.includes("@"));
+  } = useValidation((value) => value.includes("@"), "");
   const {
     error: passwordError,
     isValid: passwordValid,
@@ -32,7 +32,7 @@ const Login = () => {
     onBlurHandler: passwordOnBlur,
     onChangeHandler: passwordOnChange,
     resetHandler: passwordReset,
-  } = useValidation((value) => (value.trim() !== "") & (value.length >= 6));
+  } = useValidation((value) => (value.trim() !== "") & (value.length >= 6), "");
   let formIsValid = false;
 
   if (emailValid && passwordValid) {
