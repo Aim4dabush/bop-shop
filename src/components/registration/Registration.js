@@ -6,6 +6,9 @@ import Password from "./password/Password";
 //hooks
 import useValidation from "../../hooks/useValidation";
 
+//luxon
+import { DateTime } from "luxon";
+
 //redux
 import { useDispatch } from "react-redux";
 
@@ -69,7 +72,7 @@ const Registration = () => {
     e.preventDefault();
     let general = {};
     general = {
-      birth,
+      birth: DateTime.fromISO(birth).toFormat("MM-dd-yyyy"),
       email,
       name,
       phone,

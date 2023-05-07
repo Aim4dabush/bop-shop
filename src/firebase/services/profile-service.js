@@ -16,7 +16,7 @@ export const getUserProfile = (user) => {
           return;
         }
 
-        const data = results.val().info;
+        const data = results.val().general;
         dispatch(profileActions.setProfile(data));
       });
     } catch (err) {
