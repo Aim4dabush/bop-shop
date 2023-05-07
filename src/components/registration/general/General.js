@@ -66,7 +66,7 @@ const General = ({
           stretch={true}
           type={"date"}
           value={birth}
-          onChangeHandler={birth}
+          onChangeHandler={birthOnChange}
         >
           Birthday
         </Input>

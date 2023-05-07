@@ -17,7 +17,6 @@ const Password = ({
 }) => {
   return (
     <div className={styles.password_wrapper}>
-      <h3>Password</h3>
       <div className={styles.row}>
         <Input
           classStyle={passwordClassName}

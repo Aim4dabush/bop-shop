@@ -1,7 +1,6 @@
 //components
 import Button from "../shared/button/Button";
 import General from "./general/General";
-import Input from "../shared/input/Input";
 import Password from "./password/Password";
 
 //hooks
@@ -68,12 +67,19 @@ const Registration = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    let general = {};
+    general = {
+      birth,
+      email,
+      name,
+      phone,
+    };
 
     if (!formIsValid && password === confirm) {
       return;
     }
 
-    dispatch(registerUser(email, name, password));
+    dispatch(registerUser(general, password));
 
     birthReset();
     confirmReset();

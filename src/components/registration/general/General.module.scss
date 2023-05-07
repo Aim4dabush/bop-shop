@@ -1,7 +1,27 @@
+@import "../../../SassVariables.scss";
+
 .general_wrapper {
   width: 100%;
   .row {
     display: flex;
     gap: 0.5rem;
+
+    .error {
+      background-color: $error;
+      border-color: $error;
+    }
+
+    .errorMessage {
+      color: $error;
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .general_wrapper {
+    .row {
+      flex-direction: column;
+    }
   }
 }
