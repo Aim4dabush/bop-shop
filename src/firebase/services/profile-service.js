@@ -31,7 +31,7 @@ export const getUserProfile = (user) => {
   };
 };
 
-export const postUserProfile = (data) => {
+export const postUserGeneral = (data) => {
   return (dispatch) => {
     const profileRef = ref(realtimeDB, `users/${data.id}/profile`);
     let general = {

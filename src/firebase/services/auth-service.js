@@ -15,7 +15,7 @@ import {
 } from "firebase/auth";
 
 //services
-import { postUserProfile } from "./profile-service";
+import { postUserGeneral } from "./profile-service";
 
 export const registerUser = (info, password) => {
   return async (dispatch) => {
@@ -36,7 +36,7 @@ export const registerUser = (info, password) => {
         phoneNumber: info.phone,
       });
       dispatch(
-        postUserProfile({
+        postUserGeneral({
           birth: info.birth,
           email: info.email,
           name: info.name,
