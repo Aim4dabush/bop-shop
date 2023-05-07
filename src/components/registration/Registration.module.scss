@@ -17,20 +17,8 @@
     padding: 0.5rem;
     width: 35%;
 
-    .userWrapper {
-      display: flex;
-      gap: 1rem;
-
-      .inputControl {
-        display: flex;
-        flex-direction: column;
-
-        .input {
-          border: 1px solid black;
-          border-radius: 3px;
-          font-size: 20px;
-        }
-      }
+    .error {
+      border-color: $error;
     }
   }
 }

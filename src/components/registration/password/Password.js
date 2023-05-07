@@ -42,7 +42,7 @@ const Password = ({
             onChange={confirmOnChange}
           />
           {password !== confirm && (
-            <p className={styles.errorMessage}>
+            <p className={styles.error_message}>
               This field doesn't match the password you entered.
             </p>
           )}

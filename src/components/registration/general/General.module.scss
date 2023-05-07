@@ -5,16 +5,6 @@
   .row {
     display: flex;
     gap: 0.5rem;
-
-    .error {
-      background-color: $error;
-      border-color: $error;
-    }
-
-    .errorMessage {
-      color: $error;
-      font-size: 14px;
-    }
   }
 }
 
