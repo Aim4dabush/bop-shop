@@ -17,12 +17,12 @@ import {
 //services
 import { postUserProfile } from "./profile-service";
 
-export const registerUser = (email, name, password) => {
+export const registerUser = (info, password) => {
   return async (dispatch) => {
     try {
       const result = await createUserWithEmailAndPassword(
         auth,
-        email,
+        info.email,
         password
       );
       if (!result) {
@@ -30,13 +30,17 @@ export const registerUser = (email, name, password) => {
       }
 
       const user = result.user;
-      updateProfile(user, { displayName: name });
+      updateProfile(user, {
+        displayName: info.name,
+        email: info.email,
+        phoneNumber: info.phone,
+      });
       dispatch(
         postUserProfile({
-          billingAddress: "",
-          shippingAddress: "",
-          name,
-          email,
+          birth: info.birth,
+          email: info.email,
+          name: info.name,
+          phone: info.phone,
           id: user.uid,
         })
       );
@@ -44,7 +48,7 @@ export const registerUser = (email, name, password) => {
         notificationActions.setInfo({
           show: true,
           status: "Success",
-          message: `${name} is registered with email ${email}`,
+          message: `${info.name} is registered with email ${info.email}`,
         })
       );
     } catch (err) {
