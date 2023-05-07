@@ -82,6 +82,7 @@ export const login = (email, password) => {
         id: user.claims.user_id,
         email: user.claims.email,
         name: user.claims.name,
+        expiration: user.expirationTime,
         token: user.token,
       };
 
