@@ -32,7 +32,7 @@ const OrderTable = () => {
                   <tr key={order.receipt}>
                     <th>
                       <NavLink
-                        to={`/orders/${order.receipt}`}
+                        to={`/history/${order.receipt}`}
                         className={styles.receipt_link}
                       >
                         {order.receipt}
