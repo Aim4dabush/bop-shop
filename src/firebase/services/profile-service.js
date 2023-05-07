@@ -53,3 +53,27 @@ export const postUserGeneral = (data) => {
     }
   };
 };
+
+export const postUserAddress = (data) => {
+  return (dispatch) => {
+    const profileRef = ref(realtimeDB, `users/${data.id}/profile`);
+    let address = {
+      city: data.city ? data.city : "",
+      state: data.state ? data.city : "",
+      street: data.street ? data.street : "",
+      zip: data.zip ? data.zip : "",
+    };
+
+    try {
+      set(profileRef, { address });
+    } catch (err) {
+      dispatch(
+        notificationActions.setInfo({
+          show: true,
+          status: "Error",
+          message: err.message,
+        })
+      );
+    }
+  };
+};
