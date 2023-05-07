@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 //components
 import WishCard from "./wish-card/WishCard";
 
@@ -7,21 +5,13 @@ import WishCard from "./wish-card/WishCard";
 import { FaBan } from "react-icons/fa";
 
 //redux
-import { useDispatch, useSelector } from "react-redux";
-
-//services
-import { getWishList } from "../../../firebase/services/wish-list-service";
+import { useSelector } from "react-redux";
 
 //styles
 import styles from "./WishList.module.scss";
 
 const WishList = () => {
-  const dispatch = useDispatch();
   const wishList = useSelector((state) => state.cart.wishCart);
-
-  useEffect(() => {
-    dispatch(getWishList());
-  }, [dispatch]);
   return (
     <section className={styles.container}>
       {wishList?.length === 0 && (
