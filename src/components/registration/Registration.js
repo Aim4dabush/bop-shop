@@ -1,6 +1,8 @@
 //components
 import Button from "../shared/button/Button";
+import General from "./general/General";
 import Input from "../shared/input/Input";
+import Password from "./password/Password";
 
 //hooks
 import useValidation from "../../hooks/useValidation";
@@ -16,6 +18,19 @@ import styles from "./Registration.module.scss";
 
 const Registration = () => {
   const dispatch = useDispatch();
+  const {
+    value: birth,
+    onChangeHandler: birthOnChange,
+    resetHandler: birthReset,
+  } = useValidation((value) => value.trim() !== "", "");
+  const {
+    error: confirmError,
+    isValid: confirmValid,
+    value: confirm,
+    onBlurHandler: confirmOnBlur,
+    onChangeHandler: confirmOnChange,
+    resetHandler: confirmReset,
+  } = useValidation((value) => value.trim() !== "", "");
   const {
     error: emailError,
     isValid: emailValid,
@@ -41,12 +56,9 @@ const Registration = () => {
     resetHandler: passwordReset,
   } = useValidation((value) => value.trim() !== "" && value.length >= 6, "");
   const {
-    error: confirmError,
-    isValid: confirmValid,
-    value: confirm,
-    onBlurHandler: confirmOnBlur,
-    onChangeHandler: confirmOnChange,
-    resetHandler: confirmReset,
+    value: phone,
+    onChangeHandler: phoneOnChange,
+    resetHandler: phoneReset,
   } = useValidation((value) => value.trim() !== "", "");
   let formIsValid = false;
 
@@ -63,10 +75,12 @@ const Registration = () => {
 
     dispatch(registerUser(email, name, password));
 
+    birthReset();
     confirmReset();
     emailReset();
     nameReset();
     passwordReset();
+    phoneReset();
   };
 
   const confirmClassName = confirmError ? styles.error : null;
@@ -78,62 +92,33 @@ const Registration = () => {
     <div className={styles.container}>
       <form className={styles.form} onSubmit={submitHandler}>
         <h1>Registration</h1>
-        <div className={styles.userWrapper}>
-          <Input
-            classStyle={nameClassName}
-            error={nameError}
-            id={"name"}
-            message={"Please enter a name that is at least two letters long"}
-            onBlurHandler={nameOnBlur}
-            onChangeHandler={nameOnChange}
-            type={"text"}
-            value={name}
-          >
-            Name
-          </Input>
-          <Input
-            classStyle={emailClassName}
-            error={emailError}
-            id={"email"}
-            message={"Please enter a valid email"}
-            onBlurHandler={emailOnBlur}
-            onChangeHandler={emailOnChange}
-            type={"email"}
-            value={email}
-          >
-            Email
-          </Input>
-        </div>
-        <div className={styles.userWrapper}>
-          <Input
-            classStyle={passwordClassName}
-            error={passwordError}
-            id={"password"}
-            message={"Please enter a password at least 6 characters long"}
-            onBlurHandler={passwordOnBlur}
-            onChangeHandler={passwordOnChange}
-            type={"password"}
-            value={password}
-          >
-            Password
-          </Input>
-          <div className={styles.inputControl}>
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <input
-              className={`${styles.input} ${confirmClassName}`}
-              type="password"
-              value={confirm}
-              id="confirmPassword"
-              onBlur={confirmOnBlur}
-              onChange={confirmOnChange}
-            />
-            {password !== confirm && (
-              <p className={styles.errorMessage}>
-                This field doesn't match the password you entered.
-              </p>
-            )}
-          </div>
-        </div>
+        <General
+          birth={birth}
+          birthOnChange={birthOnChange}
+          email={email}
+          emailClassName={emailClassName}
+          emailError={emailError}
+          emailOnBlur={emailOnBlur}
+          emailOnChange={emailOnChange}
+          name={name}
+          nameClassName={nameClassName}
+          nameError={nameError}
+          nameOnBlur={nameOnBlur}
+          nameOnChange={nameOnChange}
+          phone={phone}
+          phoneOnChange={phoneOnChange}
+        />
+        <Password
+          confirm={confirm}
+          confirmClassName={confirmClassName}
+          confirmOnBlur={confirmOnBlur}
+          confirmOnChange={confirmOnChange}
+          password={password}
+          passwordClassName={passwordClassName}
+          passwordError={passwordError}
+          passwordOnBlur={passwordOnBlur}
+          passwordOnChange={passwordOnChange}
+        />
         <Button background={"success"}>Submit</Button>
       </form>
     </div>
