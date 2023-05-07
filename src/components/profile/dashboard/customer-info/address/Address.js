@@ -1,5 +1,9 @@
 //components
 import Input from "../../../../shared/input/Input";
+import Select from "../../../../shared/select/Select";
+
+//data
+import { stateOptions } from "../../../../../utils/options-data";
 
 //styles
 import styles from "./Address.module.scss";
@@ -40,15 +44,16 @@ const Address = ({
         >
           City
         </Input>
-        <Input
+        <Select
           disable={!edit}
           id={"state"}
           stretch={true}
           value={state}
+          selectOptions={stateOptions}
           onChangeHandler={stateOnChange}
         >
           State
-        </Input>
+        </Select>
         <Input
           disable={!edit}
           id={"zip"}
