@@ -7,7 +7,7 @@ import { Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 //services
-import { getOrderHistory } from "../../firebase/services/history-service";
+import { getOrderHistory } from "../../firebase/services/order-service";
 import { getUserProfile } from "../../firebase/services/profile-service";
 import { getWishList } from "../../firebase/services/wish-list-service";
 
