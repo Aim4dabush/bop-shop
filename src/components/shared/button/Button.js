@@ -1,7 +1,7 @@
 //styles
 import styles from "./Button.module.scss";
 
-const Button = ({ background, buttonHandler, children, tip }) => {
+const Button = ({ background, buttonHandler, children, tip, type }) => {
   return (
     <button
       className={`${styles.btn} ${
@@ -11,6 +11,7 @@ const Button = ({ background, buttonHandler, children, tip }) => {
         (background === "warning" && styles.warning) ||
         (background === "danger" && styles.danger)
       }`}
+      type={type}
       onClick={buttonHandler}
     >
       <span className={styles.toolTip}>{tip}</span>
