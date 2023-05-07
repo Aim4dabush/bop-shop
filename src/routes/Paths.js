@@ -6,6 +6,7 @@ import CartPage from "../pages/cart/CartPage";
 import CheckoutPage from "../pages/checkout/CheckoutPage";
 import Dashboard from "../components/profile/dashboard/Dashboard";
 import History from "../components/profile/history/History";
+import HistoryDetails from "../components/profile/history-details/HistoryDetails";
 import LoginPage from "../pages/login/LoginPage";
 import ProductDetailsPage from "../pages/product-details/ProductDetailsPage";
 import ProductsPage from "../pages/products/ProductsPage";
@@ -33,6 +34,7 @@ const Paths = () => {
           <Route element={<ProfilePage />} path="profile">
             <Route index element={<Dashboard />} />
             <Route element={<History />} path="history" />
+            <Route element={<HistoryDetails />} path="history/:receipt" />
             <Route element={<WishList />} path="wish-list" />
           </Route>
         )}
