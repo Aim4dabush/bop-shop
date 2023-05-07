@@ -51,6 +51,7 @@ function App() {
     if (date) {
       autoLog = setTimeout(() => {
         dispatch(logout());
+        dispatch(notificationActions.setInfoReset());
       }, expirationTime);
     }
 
