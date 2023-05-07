@@ -11,7 +11,7 @@ import { get, onValue, ref, set } from "firebase/database";
 import { getUserData } from "../../utils/user-data";
 
 const user = getUserData();
-const shopRef = ref(realtimeDB, `users/${user.id}/shop`);
+const shopRef = ref(realtimeDB, `users/${user?.id}/shop`);
 
 export const getShoppingCart = () => {
   return (dispatch) => {

@@ -10,7 +10,7 @@ import { realtimeDB } from "../firebaseConfig";
 import { onValue, ref } from "firebase/database";
 
 const user = getUserData();
-const historyRef = ref(realtimeDB, `users/${user.id}/order-history`);
+const historyRef = ref(realtimeDB, `users/${user?.id}/order-history`);
 
 export const getOrderHistory = () => {
   return async (dispatch) => {

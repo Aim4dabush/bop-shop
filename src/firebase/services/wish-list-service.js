@@ -11,7 +11,7 @@ import { get, onValue, ref, set } from "firebase/database";
 import { getUserData } from "../../utils/user-data";
 
 const user = getUserData();
-const wishRef = ref(realtimeDB, `users/${user.id}/wish`);
+const wishRef = ref(realtimeDB, `users/${user?.id}/wish`);
 
 export const getWishList = () => {
   return (dispatch) => {
