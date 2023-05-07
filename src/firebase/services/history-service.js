@@ -1,12 +1,15 @@
 import { historyActions } from "../../redux/slices/historySlice";
 
+//data
+import { getUserData } from "../../utils/user-data";
+
 //firebase
 import { realtimeDB } from "../firebaseConfig";
 
 //realtime database
 import { onValue, ref } from "firebase/database";
 
-const user = JSON.parse(localStorage.getItem("user"));
+const user = getUserData();
 const historyRef = ref(realtimeDB, `users/${user.id}/order-history`);
 
 export const getOrderHistory = () => {
