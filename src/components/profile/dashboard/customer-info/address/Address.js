@@ -28,8 +28,8 @@ const Address = ({
           id={"street"}
           stretch={true}
           type={"text"}
-          value={city}
-          onChangeHandler={cityOnChange}
+          value={street}
+          onChangeHandler={streetOnChange}
         >
           Street
         </Input>
