@@ -15,17 +15,21 @@ import { DateTime } from "luxon";
 import { FaEdit, FaWindowClose } from "react-icons/fa";
 
 //redux
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+//services
+import { postUserProfile } from "../../../../firebase/services/profile-service";
 
 //styles
 import styles from "./CustomerInfo.module.scss";
 
 const CustomerInfo = () => {
-  const { profile } = useSelector((state) => state.profile);
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
   const [edit, setEdit] = useState(false);
   const { value: birth, onChangeHandler: birthOnChange } = useValidate(
     (value) => value.trim() !== "",
-    profile.birth ? profile.birth : ""
+    ""
   );
   const { value: city, onChangeHandler: cityOnChange } = useValidate(
     (value) => value.trim() !== "",
@@ -33,11 +37,11 @@ const CustomerInfo = () => {
   );
   const { value: email, onChangeHandler: emailOnChange } = useValidate(
     (value) => value.includes("@"),
-    profile.email ? profile.email : ""
+    ""
   );
   const { value: name, onChangeHandler: nameOnChange } = useValidate(
     (value) => value.trim() !== "",
-    profile.name ? profile.name : ""
+    ""
   );
   const { value: state, onChangeHandler: stateOnChange } = useValidate(
     (value) => value.trim() !== "",
@@ -49,7 +53,7 @@ const CustomerInfo = () => {
   );
   const { value: phone, onChangeHandler: phoneOnChange } = useValidate(
     (value) => value.trim() !== "",
-    profile.phone ? profile.phone : ""
+    ""
   );
   const { value: zip, onChangeHandler: zipOnChange } = useValidate(
     (value) => value.trim() !== "",
@@ -62,20 +66,19 @@ const CustomerInfo = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const general = {
+    const data = {
       birth: DateTime.fromISO(birth).toFormat("MM-dd-yyyy"),
+      city,
       email,
+      id: user.id,
       name,
       phone,
-    };
-    const address = {
-      city,
       state,
       street,
       zip,
     };
+    dispatch(postUserProfile(data));
     setEdit((prev) => (prev = !prev));
-    console.log(general);
   };
 
   return (
